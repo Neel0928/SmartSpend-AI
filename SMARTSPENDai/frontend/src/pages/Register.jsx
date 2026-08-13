@@ -9,7 +9,7 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const { signup, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
 
@@ -18,12 +18,12 @@ export default function Register() {
     if (password !== confirmPassword) {
       return setError('Passwords do not match');
     }
-    
+
     try {
       setError('');
       setLoading(true);
       await signup(email, password);
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setError('Failed to create an account. ' + err.message);
       console.error(err);
@@ -36,7 +36,7 @@ export default function Register() {
       setError('');
       setLoading(true);
       await loginWithGoogle();
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       setError('Failed to sign up with Google.');
       console.error(err);
@@ -45,43 +45,46 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
+    <div className="min-h-screen flex items-center justify-center bg-[#050505] bg-grid-pattern py-12 px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-md w-full space-y-8 glass-card p-10 md:p-12 border border-white/10 relative z-10">
         <div>
-          <div className="mx-auto h-12 w-12 bg-purple-100 rounded-full flex items-center justify-center">
-            <UserPlus className="h-6 w-6 text-purple-600" />
+          <div className="mx-auto h-12 w-12 bg-emerald-500/10 border border-emerald-500/20 rounded-full flex items-center justify-center mb-6">
+            <UserPlus className="h-6 w-6 text-emerald-400" />
           </div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="text-center text-3xl font-black text-white tracking-tight">
             Create an account
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-400">
             Already have an account?{' '}
-            <Link to="/login" className="font-medium text-purple-600 hover:text-purple-500 transition-colors">
+            <Link to="/login" className="font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
               Sign in
             </Link>
           </p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-md flex items-center">
-            <AlertCircle className="h-5 w-5 text-red-400 mr-2 flex-shrink-0" />
-            <p className="text-sm text-red-700">{error}</p>
+          <div className="bg-red-500/10 border-l-4 border-red-500 p-4 rounded-md flex items-center">
+            <AlertCircle className="h-5 w-5 text-red-500 mr-2 flex-shrink-0" />
+            <p className="text-sm text-red-200">{error}</p>
           </div>
         )}
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm space-y-4">
+        <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+          <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Email address</label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
+              <label className="block text-xs font-semibold text-gray-400 mb-1.5">Email address</label>
+              <div className="relative rounded-lg shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <Mail className="h-4 w-4 text-gray-500" />
                 </div>
                 <input
                   type="email"
                   required
-                  className="focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2 border"
-                  placeholder="you@example.com"
+                  className="block w-full pl-10 pr-3 py-2.5 sm:text-sm border border-white/5 bg-white/5 rounded-lg text-white placeholder-gray-500 focus:bg-white/10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-colors"
+                  autoComplete="new-password"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -89,16 +92,16 @@ export default function Register() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700">Password</label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
+              <label className="block text-xs font-semibold text-gray-400 mb-1.5">Password</label>
+              <div className="relative rounded-lg shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <Lock className="h-4 w-4 text-gray-500" />
                 </div>
                 <input
                   type="password"
                   required
-                  className="focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2 border"
-                  placeholder="••••••••"
+                  className="block w-full pl-10 pr-3 py-2.5 sm:text-sm border border-white/5 bg-white/5 rounded-lg text-white placeholder-gray-500 focus:bg-white/10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-colors"
+                  autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -106,16 +109,16 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
+              <label className="block text-xs font-semibold text-gray-400 mb-1.5">Confirm Password</label>
+              <div className="relative rounded-lg shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <Lock className="h-4 w-4 text-gray-500" />
                 </div>
                 <input
                   type="password"
                   required
-                  className="focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2 border"
-                  placeholder="••••••••"
+                  className="block w-full pl-10 pr-3 py-2.5 sm:text-sm border border-white/5 bg-white/5 rounded-lg text-white placeholder-gray-500 focus:bg-white/10 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-colors"
+                  autoComplete="new-password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
@@ -123,32 +126,32 @@ export default function Register() {
             </div>
           </div>
 
-          <div>
+          <div className="pt-2">
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-2.5 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-emerald-500 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 disabled:opacity-50 transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)]"
             >
               {loading ? 'Creating account...' : 'Sign up'}
             </button>
           </div>
         </form>
 
-        <div className="mt-6">
+        <div className="mt-8">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
+              <div className="w-full border-t border-white/10" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or continue with</span>
+              <span className="px-2 bg-[#1a1a1a] text-gray-500">Or continue with</span>
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-8">
             <button
               onClick={handleGoogleSignIn}
               disabled={loading}
-              className="w-full flex justify-center py-2.5 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+              className="w-full flex justify-center items-center py-2.5 px-4 border border-white/10 rounded-lg bg-white/5 text-sm font-semibold text-gray-300 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors"
             >
               <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                 <path

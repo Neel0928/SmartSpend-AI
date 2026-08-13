@@ -146,8 +146,8 @@ export default function Expenses() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Expenses</h1>
-            <p className="text-gray-500 text-sm mt-1">Track, manage and analyze your spending</p>
+            <h1 className="text-2xl font-bold text-white">Expenses</h1>
+            <p className="text-gray-400 text-sm mt-1">Track, manage and analyze your spending</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="relative">
@@ -155,81 +155,81 @@ export default function Expenses() {
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-10 pr-14 py-2.5 rounded-xl border border-gray-200 text-sm w-80 md:w-96 lg:w-[400px] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all bg-transparent relative z-10"
+                className="pl-10 pr-14 py-2.5 rounded-xl border border-white/10 text-sm w-80 md:w-96 lg:w-[400px] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all bg-white/5 text-white placeholder-gray-500 relative z-10"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-1 z-0">
-                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-medium text-gray-500 bg-gray-100 rounded border border-gray-200">⌘</kbd>
-                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-medium text-gray-500 bg-gray-100 rounded border border-gray-200">K</kbd>
+                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-medium text-gray-400 bg-white/10 rounded border border-white/10">⌘</kbd>
+                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-medium text-gray-400 bg-white/10 rounded border border-white/10">K</kbd>
               </div>
             </div>
-            <button className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm whitespace-nowrap">
-              <Calendar className="w-4 h-4 text-gray-500" />
+            <button className="flex items-center gap-2 glass-card border border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm whitespace-nowrap">
+              <Calendar className="w-4 h-4 text-emerald-400" />
               {dateRangeStr}
-              <ChevronDown className="w-4 h-4 text-gray-400 ml-1" />
+              <ChevronDown className="w-4 h-4 text-gray-500 ml-1" />
             </button>
             <button
               onClick={() => setIsAddExpenseModalOpen(true)}
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-sm shadow-blue-600/20 whitespace-nowrap"
+              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)] whitespace-nowrap"
             >
               <Plus className="w-4 h-4" />
               Add Expense
-              <ChevronDown className="w-4 h-4 text-blue-200 ml-1" />
+              <ChevronDown className="w-4 h-4 text-emerald-200 ml-1" />
             </button>
           </div>
         </div>
 
         {/* Top Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
-              <ArrowUpRight className="w-6 h-6 text-red-500" />
+          <div className="glass-card rounded-2xl p-6 border border-white/10 flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0">
+              <ArrowUpRight className="w-6 h-6 text-red-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500 mb-1">Total Expenses</p>
-              <h3 className="text-2xl font-bold text-gray-900">{currencySymbol}{totalExpenses.toLocaleString(undefined, { minimumFractionDigits: 2 })}</h3>
-              <p className="text-xs font-medium text-red-500 mt-1 flex items-center gap-1">
-                <ArrowUpRight className="w-3 h-3" /> 8.3% <span className="text-gray-400 font-normal">from Apr 2025</span>
+              <p className="text-sm font-medium text-gray-400 mb-1">Total Expenses</p>
+              <h3 className="text-2xl font-bold text-white">{currencySymbol}{totalExpenses.toLocaleString(undefined, { minimumFractionDigits: 2 })}</h3>
+              <p className="text-xs font-medium text-red-400 mt-1 flex items-center gap-1">
+                <ArrowUpRight className="w-3 h-3" /> 8.3% <span className="text-gray-500 font-normal">from Apr 2025</span>
               </p>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0">
-              <TrendingUp className="w-6 h-6 text-indigo-500" />
+          <div className="glass-card rounded-2xl p-6 border border-white/10 flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+              <TrendingUp className="w-6 h-6 text-indigo-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500 mb-1">Daily Average (This Month)</p>
-              <h3 className="text-2xl font-bold text-gray-900">{currencySymbol}{dailyAverage.toLocaleString(undefined, { maximumFractionDigits: 2 })}</h3>
-              <p className="text-xs font-medium text-red-500 mt-1 flex items-center gap-1">
-                <ArrowUpRight className="w-3 h-3" /> 5.2% <span className="text-gray-400 font-normal">from Apr 2025</span>
+              <p className="text-sm font-medium text-gray-400 mb-1">Daily Average (This Month)</p>
+              <h3 className="text-2xl font-bold text-white">{currencySymbol}{dailyAverage.toLocaleString(undefined, { maximumFractionDigits: 2 })}</h3>
+              <p className="text-xs font-medium text-red-400 mt-1 flex items-center gap-1">
+                <ArrowUpRight className="w-3 h-3" /> 5.2% <span className="text-gray-500 font-normal">from Apr 2025</span>
               </p>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
-              <Calendar className="w-6 h-6 text-blue-500" />
+          <div className="glass-card rounded-2xl p-6 border border-white/10 flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+              <Calendar className="w-6 h-6 text-emerald-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500 mb-1">Last 7 Days</p>
-              <h3 className="text-2xl font-bold text-gray-900">{currencySymbol}{thisWeek.toLocaleString(undefined, { minimumFractionDigits: 2 })}</h3>
-              <p className="text-xs font-medium text-green-500 mt-1 flex items-center gap-1">
-                <ArrowUpRight className="w-3 h-3 rotate-180" /> 12.6% <span className="text-gray-400 font-normal">from last week</span>
+              <p className="text-sm font-medium text-gray-400 mb-1">Last 7 Days</p>
+              <h3 className="text-2xl font-bold text-white">{currencySymbol}{thisWeek.toLocaleString(undefined, { minimumFractionDigits: 2 })}</h3>
+              <p className="text-xs font-medium text-emerald-400 mt-1 flex items-center gap-1">
+                <ArrowUpRight className="w-3 h-3 rotate-180" /> 12.6% <span className="text-gray-500 font-normal">from last week</span>
               </p>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0">
-              <List className="w-6 h-6 text-green-500" />
+          <div className="glass-card rounded-2xl p-6 border border-white/10 flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+              <List className="w-6 h-6 text-emerald-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500 mb-1">Transactions</p>
-              <h3 className="text-2xl font-bold text-gray-900">{transactionCount}</h3>
-              <p className="text-xs font-medium text-red-500 mt-1 flex items-center gap-1">
-                <ArrowUpRight className="w-3 h-3" /> 3 <span className="text-gray-400 font-normal">from Apr 2025</span>
+              <p className="text-sm font-medium text-gray-400 mb-1">Transactions</p>
+              <h3 className="text-2xl font-bold text-white">{transactionCount}</h3>
+              <p className="text-xs font-medium text-red-400 mt-1 flex items-center gap-1">
+                <ArrowUpRight className="w-3 h-3" /> 3 <span className="text-gray-500 font-normal">from Apr 2025</span>
               </p>
             </div>
           </div>
@@ -239,7 +239,7 @@ export default function Expenses() {
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
 
           {/* Main Table */}
-          <div className="xl:col-span-3 bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col min-h-[600px]">
+          <div className="xl:col-span-3 glass-card rounded-2xl border border-white/10 p-6 flex flex-col min-h-[600px]">
             {/* Table Filters */}
             <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
               <div className="flex items-center gap-3">
@@ -248,69 +248,69 @@ export default function Expenses() {
                   <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="pl-8 pr-8 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-100 transition-colors focus:outline-none appearance-none cursor-pointer"
+                    className="pl-8 pr-8 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-gray-300 hover:bg-white/10 transition-colors focus:outline-none appearance-none cursor-pointer"
                     style={{ backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`, backgroundPosition: 'right 8px center', backgroundRepeat: 'no-repeat', backgroundSize: '12px' }}
                   >
-                    <option value="All Categories">All Categories</option>
-                    <option value="Food & Dining">Food & Dining</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Transportation">Transportation</option>
-                    <option value="Bills & Utilities">Bills & Utilities</option>
-                    <option value="Entertainment">Entertainment</option>
-                    <option value="Health">Health</option>
-                    <option value="Travel">Travel</option>
-                    <option value="Other">Other</option>
+                    <option value="All Categories" className="bg-[#050505] text-white">All Categories</option>
+                    <option value="Food & Dining" className="bg-[#050505] text-white">Food & Dining</option>
+                    <option value="Shopping" className="bg-[#050505] text-white">Shopping</option>
+                    <option value="Transportation" className="bg-[#050505] text-white">Transportation</option>
+                    <option value="Bills & Utilities" className="bg-[#050505] text-white">Bills & Utilities</option>
+                    <option value="Entertainment" className="bg-[#050505] text-white">Entertainment</option>
+                    <option value="Health" className="bg-[#050505] text-white">Health</option>
+                    <option value="Travel" className="bg-[#050505] text-white">Travel</option>
+                    <option value="Other" className="bg-[#050505] text-white">Other</option>
                   </select>
                 </div>
 
                 <div className="relative">
-                  <Landmark className="w-3 h-3 text-gray-500 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+                  <Landmark className="w-3 h-3 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
                   <select
                     value={selectedAccount}
                     onChange={(e) => setSelectedAccount(e.target.value)}
-                    className="pl-8 pr-8 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-100 transition-colors focus:outline-none appearance-none cursor-pointer"
+                    className="pl-8 pr-8 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-gray-300 hover:bg-white/10 transition-colors focus:outline-none appearance-none cursor-pointer"
                     style={{ backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`, backgroundPosition: 'right 8px center', backgroundRepeat: 'no-repeat', backgroundSize: '12px' }}
                   >
-                    <option value="All Accounts">All Accounts</option>
-                    <option value="Main Account">Main Account</option>
-                    <option value="Savings Account">Savings Account</option>
-                    <option value="Joint Account">Joint Account</option>
-                    <option value="Business Account">Business Account</option>
+                    <option value="All Accounts" className="bg-[#050505] text-white">All Accounts</option>
+                    <option value="Main Account" className="bg-[#050505] text-white">Main Account</option>
+                    <option value="Savings Account" className="bg-[#050505] text-white">Savings Account</option>
+                    <option value="Joint Account" className="bg-[#050505] text-white">Joint Account</option>
+                    <option value="Business Account" className="bg-[#050505] text-white">Business Account</option>
                   </select>
                 </div>
 
                 <div className="relative">
-                  <CreditCard className="w-3 h-3 text-gray-500 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
+                  <CreditCard className="w-3 h-3 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
                   <select
                     value={selectedPaymentMethod}
                     onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                    className="pl-8 pr-8 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-100 transition-colors focus:outline-none appearance-none cursor-pointer"
+                    className="pl-8 pr-8 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-gray-300 hover:bg-white/10 transition-colors focus:outline-none appearance-none cursor-pointer"
                     style={{ backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`, backgroundPosition: 'right 8px center', backgroundRepeat: 'no-repeat', backgroundSize: '12px' }}
                   >
-                    <option value="All Payment Methods">All Payment Methods</option>
-                    <option value="UPI">UPI</option>
-                    <option value="Debit Card">Debit Card</option>
-                    <option value="Credit Card">Credit Card</option>
-                    <option value="Net Banking">Net Banking</option>
-                    <option value="Cash">Cash</option>
+                    <option value="All Payment Methods" className="bg-[#050505] text-white">All Payment Methods</option>
+                    <option value="UPI" className="bg-[#050505] text-white">UPI</option>
+                    <option value="Debit Card" className="bg-[#050505] text-white">Debit Card</option>
+                    <option value="Credit Card" className="bg-[#050505] text-white">Credit Card</option>
+                    <option value="Net Banking" className="bg-[#050505] text-white">Net Banking</option>
+                    <option value="Cash" className="bg-[#050505] text-white">Cash</option>
                   </select>
                 </div>
 
-                <button className="flex items-center gap-2 bg-white border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                  <Filter className="w-3 h-3 text-gray-500" />
+                <button className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-300 hover:bg-white/10 transition-colors">
+                  <Filter className="w-3 h-3 text-gray-400" />
                   More Filters
                 </button>
               </div>
               <div className="flex items-center gap-3">
-                <button className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm">
-                  <Download className="w-3 h-3 text-gray-500" />
+                <button className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-xs font-medium text-gray-300 hover:bg-white/10 transition-colors shadow-sm">
+                  <Download className="w-3 h-3 text-gray-400" />
                   Export
                 </button>
-                <div className="flex bg-gray-100 rounded-lg p-1">
-                  <button className="p-1.5 bg-white rounded shadow-sm text-blue-600">
+                <div className="flex bg-white/5 rounded-lg p-1 border border-white/10">
+                  <button className="p-1.5 bg-emerald-500/20 rounded text-emerald-400">
                     <List className="w-4 h-4" />
                   </button>
-                  <button className="p-1.5 text-gray-500 hover:text-gray-700">
+                  <button className="p-1.5 text-gray-400 hover:text-white transition-colors">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <rect x="3" y="3" width="7" height="7"></rect>
                       <rect x="14" y="3" width="7" height="7"></rect>
@@ -326,9 +326,9 @@ export default function Expenses() {
             <div className="overflow-x-auto flex-1">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  <tr className="border-b border-white/10 text-xs font-semibold text-gray-400 uppercase tracking-wider">
                     <th className="pb-3 pl-2 w-10">
-                      <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                      <input type="checkbox" className="rounded bg-[#050505] border-white/20 text-emerald-500 focus:ring-emerald-500" />
                     </th>
                     <th className="pb-3">Description</th>
                     <th className="pb-3">Category</th>
@@ -338,7 +338,7 @@ export default function Expenses() {
                     <th className="pb-3 w-10"></th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-50">
+                <tbody className="divide-y divide-white/5">
                   {loading ? (
                     <tr>
                       <td colSpan="7" className="py-8 text-center text-gray-500">Loading expenses...</td>
@@ -360,18 +360,18 @@ export default function Expenses() {
                       if (paymentMethodName === 'Cash') { MethodIcon = Landmark; methodColor = 'text-orange-600'; }
 
                       return (
-                        <tr key={tx._id || idx} className="hover:bg-gray-50/50 transition-colors">
+                        <tr key={tx._id || idx} className="hover:bg-white/5 transition-colors">
                           <td className="py-4 pl-2">
-                            <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                            <input type="checkbox" className="rounded bg-[#050505] border-white/20 text-emerald-500 focus:ring-emerald-500" />
                           </td>
                           <td className="py-4">
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded bg-gray-100 flex items-center justify-center flex-shrink-0">
-                                <span className="text-gray-500 text-sm">🏪</span>
+                              <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <span className="text-gray-400 text-sm">🏪</span>
                               </div>
                               <div>
-                                <p className="font-medium text-gray-900 text-sm">{tx.name}</p>
-                                <p className="text-xs text-gray-500">{tx.category}</p>
+                                <p className="font-medium text-white text-sm">{tx.name}</p>
+                                <p className="text-xs text-gray-400">{tx.category}</p>
                               </div>
                             </div>
                           </td>
@@ -380,20 +380,20 @@ export default function Expenses() {
                               {tx.category}
                             </span>
                           </td>
-                          <td className="py-4 text-xs text-gray-600">
+                          <td className="py-4 text-xs text-gray-400">
                             {tx.date ? new Date(tx.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Unknown Date'}
                           </td>
                           <td className="py-4">
-                            <div className="flex items-center gap-2 bg-gray-50 px-2 py-1 rounded text-xs text-gray-600 w-max border border-gray-100">
+                            <div className="flex items-center gap-2 bg-white/5 px-2 py-1 rounded text-xs text-gray-400 w-max border border-white/10">
                               <MethodIcon className={`w-3 h-3 ${methodColor}`} />
                               {paymentMethodName}
                             </div>
                           </td>
-                          <td className="py-4 text-sm font-medium text-red-500">
+                          <td className="py-4 text-sm font-medium text-red-400">
                             -{currencySymbol}{Math.abs(tx.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                           </td>
                           <td className="py-4 text-right pr-2">
-                            <button className="text-gray-400 hover:text-gray-600 p-1 rounded hover:bg-gray-100 transition-colors">
+                            <button className="text-gray-400 hover:text-white p-1 rounded hover:bg-white/10 transition-colors">
                               <MoreVertical className="w-4 h-4" />
                             </button>
                           </td>
@@ -406,14 +406,14 @@ export default function Expenses() {
             </div>
 
             {/* Pagination Mock */}
-            <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/10">
               <span className="text-xs text-gray-500">Showing 1 to {Math.min(10, transactionCount)} of {transactionCount} expenses</span>
               <div className="flex gap-1">
-                <button className="w-8 h-8 flex items-center justify-center rounded border border-gray-200 text-gray-400 hover:bg-gray-50">&lt;</button>
-                <button className="w-8 h-8 flex items-center justify-center rounded bg-blue-600 text-white font-medium">1</button>
-                <button className="w-8 h-8 flex items-center justify-center rounded border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium">2</button>
-                <button className="w-8 h-8 flex items-center justify-center rounded border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium">3</button>
-                <button className="w-8 h-8 flex items-center justify-center rounded border border-gray-200 text-gray-400 hover:bg-gray-50">&gt;</button>
+                <button className="w-8 h-8 flex items-center justify-center rounded border border-white/10 text-gray-400 hover:bg-white/5">&lt;</button>
+                <button className="w-8 h-8 flex items-center justify-center rounded bg-emerald-500 text-white font-medium shadow-[0_0_10px_rgba(16,185,129,0.3)]">1</button>
+                <button className="w-8 h-8 flex items-center justify-center rounded border border-white/10 text-gray-400 hover:bg-white/5 font-medium">2</button>
+                <button className="w-8 h-8 flex items-center justify-center rounded border border-white/10 text-gray-400 hover:bg-white/5 font-medium">3</button>
+                <button className="w-8 h-8 flex items-center justify-center rounded border border-white/10 text-gray-400 hover:bg-white/5">&gt;</button>
               </div>
             </div>
           </div>
@@ -422,11 +422,11 @@ export default function Expenses() {
           <div className="xl:col-span-1 space-y-6">
 
             {/* Spending Overview Chart */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <div className="glass-card rounded-2xl border border-white/10 p-6">
               <div className="flex justify-between items-center mb-6">
-                <h3 className="font-bold text-gray-900">Spending Overview</h3>
-                <select className="text-xs font-medium text-gray-500 bg-transparent outline-none">
-                  <option>This Month</option>
+                <h3 className="font-bold text-white">Spending Overview</h3>
+                <select className="text-xs font-medium text-gray-400 bg-transparent outline-none">
+                  <option className="bg-[#050505]">This Month</option>
                 </select>
               </div>
 
@@ -449,13 +449,13 @@ export default function Expenses() {
                     </Pie>
                     <Tooltip
                       formatter={(value) => `${currencySymbol}${value.toLocaleString()}`}
-                      contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                      contentStyle={{ backgroundColor: '#0B0F19', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }}
                     />
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                  <p className="text-lg font-bold text-gray-900">{currencySymbol}{totalExpenses >= 1000 ? (totalExpenses / 1000).toFixed(1) + 'k' : totalExpenses}</p>
-                  <p className="text-[10px] text-gray-500 font-medium">Total</p>
+                  <p className="text-lg font-bold text-white">{currencySymbol}{totalExpenses >= 1000 ? (totalExpenses / 1000).toFixed(1) + 'k' : totalExpenses}</p>
+                  <p className="text-[10px] text-gray-400 font-medium">Total</p>
                 </div>
               </div>
 
@@ -464,11 +464,11 @@ export default function Expenses() {
                   <div key={idx} className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }}></div>
-                      <span className="text-gray-600 truncate max-w-[90px]">{item.name}</span>
+                      <span className="text-gray-400 truncate max-w-[90px]">{item.name}</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="font-medium text-gray-900">{currencySymbol}{item.value >= 1000 ? (item.value / 1000).toFixed(1) + 'k' : item.value}</span>
-                      <span className="text-gray-400 w-7 text-right">{Math.round((item.value / totalExpenses) * 100)}%</span>
+                      <span className="font-medium text-white">{currencySymbol}{item.value >= 1000 ? (item.value / 1000).toFixed(1) + 'k' : item.value}</span>
+                      <span className="text-gray-500 w-7 text-right">{Math.round((item.value / totalExpenses) * 100)}%</span>
                     </div>
                   </div>
                 ))}
@@ -476,8 +476,8 @@ export default function Expenses() {
             </div>
 
             {/* Top Categories */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-bold text-gray-900 mb-6">Top Categories</h3>
+            <div className="glass-card rounded-2xl border border-white/10 p-6">
+              <h3 className="font-bold text-white mb-6">Top Categories</h3>
               <div className="space-y-5">
                 {chartData.slice(0, 5).map((item, idx) => {
                   const percentage = Math.round((item.value / totalExpenses) * 100);
@@ -488,55 +488,55 @@ export default function Expenses() {
                           <div className={`w-6 h-6 rounded flex items-center justify-center ${getCategoryColor(item.name).split(' ')[0]} bg-opacity-50`}>
                             <span className="text-[10px]">📍</span>
                           </div>
-                          <span className="font-medium text-gray-700">{item.name}</span>
+                          <span className="font-medium text-gray-300">{item.name}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-gray-500 font-medium">{currencySymbol}{item.value.toLocaleString()}</span>
-                          <span className="text-gray-400 w-6 text-right">{percentage}%</span>
+                          <span className="text-gray-400 font-medium">{currencySymbol}{item.value.toLocaleString()}</span>
+                          <span className="text-gray-500 w-6 text-right">{percentage}%</span>
                         </div>
                       </div>
-                      <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                         <div className="h-full rounded-full" style={{ width: `${percentage}%`, backgroundColor: item.color }}></div>
                       </div>
                     </div>
                   );
                 })}
               </div>
-              <button className="text-xs font-medium text-blue-600 hover:text-blue-700 mt-6 flex items-center gap-1">
+              <button className="text-xs font-medium text-emerald-400 hover:text-emerald-300 mt-6 flex items-center gap-1">
                 View All Categories &rarr;
               </button>
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-bold text-gray-900 mb-4">Quick Actions</h3>
+            <div className="glass-card rounded-2xl border border-white/10 p-6">
+              <h3 className="font-bold text-white mb-4">Quick Actions</h3>
               <div className="grid grid-cols-4 gap-2">
                 <button
                   onClick={() => setIsAddExpenseModalOpen(true)}
                   className="flex flex-col items-center gap-2 group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                    <Plus className="w-4 h-4 text-blue-600" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
+                    <Plus className="w-4 h-4 text-emerald-500" />
                   </div>
-                  <span className="text-[10px] font-medium text-gray-600 text-center leading-tight">Add<br />Expense</span>
+                  <span className="text-[10px] font-medium text-gray-400 group-hover:text-emerald-400 text-center leading-tight">Add<br />Expense</span>
                 </button>
                 <button className="flex flex-col items-center gap-2 group">
-                  <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors">
-                    <ImageIcon className="w-4 h-4 text-green-600" />
+                  <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
+                    <ImageIcon className="w-4 h-4 text-purple-400" />
                   </div>
-                  <span className="text-[10px] font-medium text-gray-600 text-center leading-tight">Upload<br />Receipt</span>
+                  <span className="text-[10px] font-medium text-gray-400 group-hover:text-purple-400 text-center leading-tight">Upload<br />Receipt</span>
                 </button>
                 <button className="flex flex-col items-center gap-2 group">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors border-2 border-dashed border-blue-200">
-                    <ScanLine className="w-4 h-4 text-blue-600" />
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border-2 border-dashed border-blue-500/30 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                    <ScanLine className="w-4 h-4 text-blue-400" />
                   </div>
-                  <span className="text-[10px] font-medium text-gray-600 text-center leading-tight">Scan<br />Receipt</span>
+                  <span className="text-[10px] font-medium text-gray-400 group-hover:text-blue-400 text-center leading-tight">Scan<br />Receipt</span>
                 </button>
                 <button className="flex flex-col items-center gap-2 group">
-                  <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center group-hover:bg-orange-100 transition-colors">
-                    <Clock className="w-4 h-4 text-orange-600" />
+                  <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
+                    <Clock className="w-4 h-4 text-orange-400" />
                   </div>
-                  <span className="text-[10px] font-medium text-gray-600 text-center leading-tight">Recurring<br /></span>
+                  <span className="text-[10px] font-medium text-gray-400 group-hover:text-orange-400 text-center leading-tight">Recurring<br /></span>
                 </button>
               </div>
             </div>

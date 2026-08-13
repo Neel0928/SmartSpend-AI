@@ -4,7 +4,7 @@ import Header from '../components/Header';
 
 export default function DashboardLayout({ children, onAddClick, hideHeaderControls }) {
   return (
-    <div className="flex h-screen bg-gray-50 font-sans overflow-hidden">
+    <div className="flex h-screen bg-[#050505] bg-grid-pattern text-white font-sans overflow-hidden relative z-10">
       {/* Sidebar - Fixed Left */}
       <Sidebar />
 

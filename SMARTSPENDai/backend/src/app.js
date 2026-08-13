@@ -30,5 +30,6 @@ app.get('/api/health', (req, res) => {
 
 // We will plug in auth, transactions, budget routes here later
 // app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/user', require('./routes/userRoutes'));
 
 module.exports = app;

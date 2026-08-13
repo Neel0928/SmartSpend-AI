@@ -5,10 +5,10 @@ export default function SpendingChart({ data = [] }) {
   const total = data.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex flex-col h-full">
+    <div className="glass-card rounded-xl p-5 border border-white/10 flex flex-col h-full">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="font-bold text-gray-900">Spending Overview</h3>
-        <select className="text-sm text-gray-500 bg-gray-50 border border-gray-200 rounded-md px-2 py-1 outline-none">
+        <h3 className="font-bold text-white">Spending Overview</h3>
+        <select className="text-sm text-gray-300 bg-white/5 border border-white/10 rounded-md px-2 py-1 outline-none">
           <option>This Month</option>
           <option>Last Month</option>
         </select>
@@ -36,8 +36,8 @@ export default function SpendingChart({ data = [] }) {
           </ResponsiveContainer>
           {/* Center Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <span className="text-xs text-gray-500 font-medium">Total</span>
-            <span className="text-lg font-bold text-gray-900">₹{total.toLocaleString()}</span>
+            <span className="text-xs text-gray-400 font-medium">Total</span>
+            <span className="text-lg font-bold text-white">₹{total.toLocaleString()}</span>
           </div>
         </div>
 
@@ -49,8 +49,8 @@ export default function SpendingChart({ data = [] }) {
                 className="w-2.5 h-2.5 rounded-full mr-2 flex-shrink-0" 
                 style={{ backgroundColor: item.color }} 
               />
-              <span className="text-gray-600 truncate flex-1">{item.name}</span>
-              <span className="font-medium text-gray-900 ml-2 text-right">
+              <span className="text-gray-300 truncate flex-1">{item.name}</span>
+              <span className="font-medium text-white ml-2 text-right">
                 ₹{item.value.toLocaleString()}
               </span>
               <span className="text-gray-400 w-8 text-right ml-1">
@@ -61,8 +61,8 @@ export default function SpendingChart({ data = [] }) {
         </div>
       </div>
       
-      <div className="mt-4 pt-4 border-t border-gray-100">
-        <button className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
+      <div className="mt-4 pt-4 border-t border-white/10">
+        <button className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
           View Full Analytics &rarr;
         </button>
       </div>

@@ -96,12 +96,12 @@ export default function Goals() {
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Savings Goals</h1>
-            <p className="text-gray-500 text-sm mt-1">Set targets and track your savings progress.</p>
+            <h1 className="text-2xl font-bold text-white">Savings Goals</h1>
+            <p className="text-gray-400 text-sm mt-1">Set targets and track your savings progress.</p>
           </div>
           <button
             onClick={() => setIsCreateModalOpen(true)}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-sm shadow-blue-600/20"
+            className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)]"
           >
             <Plus className="w-4 h-4" />
             Create Goal
@@ -109,27 +109,27 @@ export default function Goals() {
         </div>
 
         {/* Overview Card */}
-        <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
+        <div className="glass-card rounded-3xl p-8 border border-white/10 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
           
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex-1 space-y-2 text-center md:text-left">
-              <p className="text-gray-500 font-medium text-sm">Overall Savings Progress (Active Goals)</p>
+              <p className="text-gray-400 font-medium text-sm">Overall Savings Progress (Active Goals)</p>
               <div className="flex items-end justify-center md:justify-start gap-2">
-                <h2 className="text-4xl font-bold text-gray-900">{currencySymbol}{totalSaved.toLocaleString()}</h2>
-                <span className="text-gray-400 font-medium mb-1">/ {currencySymbol}{totalTarget.toLocaleString()}</span>
+                <h2 className="text-4xl font-bold text-white">{currencySymbol}{totalSaved.toLocaleString()}</h2>
+                <span className="text-gray-500 font-medium mb-1">/ {currencySymbol}{totalTarget.toLocaleString()}</span>
               </div>
             </div>
             
             <div className="w-full md:w-1/2">
               <div className="flex justify-between items-end mb-2">
-                <span className="text-sm font-bold text-blue-600">{overallProgress}%</span>
-                <span className="text-xs font-medium text-gray-400">Total Progress</span>
+                <span className="text-sm font-bold text-emerald-400">{overallProgress}%</span>
+                <span className="text-xs font-medium text-gray-500">Total Progress</span>
               </div>
-              <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+              <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-1000 ease-out"
+                  className="h-full bg-emerald-500 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(16,185,129,0.5)]"
                   style={{ width: `${Math.min(overallProgress, 100)}%` }}
                 />
               </div>
@@ -139,23 +139,23 @@ export default function Goals() {
 
         {/* Goals Grid */}
         <div className="space-y-4">
-          <h3 className="font-bold text-gray-900 text-lg">Your Goals</h3>
+          <h3 className="font-bold text-white text-lg">Your Goals</h3>
           
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 text-gray-400 gap-3">
-              <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
+            <div className="flex flex-col items-center justify-center py-20 text-gray-500 gap-3">
+              <Loader2 className="w-8 h-8 animate-spin text-emerald-500" />
               <p className="font-medium">Loading goals...</p>
             </div>
           ) : goals.length === 0 ? (
-            <div className="bg-white rounded-3xl p-12 text-center shadow-sm border border-gray-100 flex flex-col items-center justify-center space-y-4">
-              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500 mb-2">
+            <div className="glass-card rounded-3xl p-12 text-center border border-white/10 flex flex-col items-center justify-center space-y-4">
+              <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-400 mb-2">
                 <Target className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900">No goals yet</h3>
-              <p className="text-gray-500 max-w-sm mx-auto">Create your first savings goal to start tracking your progress towards what matters most.</p>
+              <h3 className="text-xl font-bold text-white">No goals yet</h3>
+              <p className="text-gray-400 max-w-sm mx-auto">Create your first savings goal to start tracking your progress towards what matters most.</p>
               <button
                 onClick={() => setIsCreateModalOpen(true)}
-                className="mt-4 px-6 py-2.5 bg-gray-900 hover:bg-gray-800 text-white rounded-xl font-medium transition-colors shadow-lg"
+                className="mt-4 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)]"
               >
                 Create a Goal
               </button>
@@ -167,25 +167,25 @@ export default function Goals() {
                 const isCompleted = goal.status === 'completed';
                 
                 return (
-                  <div key={goal._id} className={`bg-white rounded-3xl p-6 shadow-sm border ${isCompleted ? 'border-green-100' : 'border-gray-100'} flex flex-col relative overflow-hidden transition-all hover:shadow-md hover:-translate-y-1`}>
+                  <div key={goal._id} className={`glass-card rounded-3xl p-6 border ${isCompleted ? 'border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'border-white/10'} flex flex-col relative overflow-hidden transition-all hover:-translate-y-1 hover:border-white/20`}>
                     
                     {/* Background decorative blob */}
-                    <div className={`absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-10 ${goal.color}`}></div>
+                    <div className={`absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-10 ${goal.color.replace('bg-', 'bg-')}`}></div>
                     
                     <div className="flex justify-between items-start mb-6 relative z-10">
                       <div className="flex items-center gap-3">
-                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${goal.color} bg-opacity-10 shadow-sm`}>
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${goal.color.replace('bg-', 'bg-')}/20 shadow-sm border border-white/5`}>
                           <Icon className={`w-6 h-6 ${goal.color.replace('bg-', 'text-')}`} />
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-2">
                         {isCompleted ? (
-                          <div className="px-3 py-1 bg-green-50 text-green-600 rounded-full text-xs font-bold border border-green-100 flex items-center gap-1">
+                          <div className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold border border-emerald-500/20 flex items-center gap-1">
                             <span>🎉</span> Completed
                           </div>
                         ) : (
-                          <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500 bg-gray-50 px-3 py-1 rounded-full border border-gray-100">
+                          <div className="flex items-center gap-1.5 text-xs font-medium text-gray-400 bg-white/5 px-3 py-1 rounded-full border border-white/10">
                             <Clock className="w-3 h-3" />
                             {getDeadlineText(goal.deadline, goal.status)}
                           </div>
@@ -194,7 +194,7 @@ export default function Goals() {
                         <div className="relative group">
                           <button 
                             onClick={() => setSelectedGoalForEdit(goal)}
-                            className="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
+                            className="p-1.5 text-gray-500 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
                             title="Edit or Delete Goal"
                           >
                             <MoreVertical className="w-4 h-4" />
@@ -204,26 +204,26 @@ export default function Goals() {
                     </div>
                     
                     <div className="mb-6 flex-1 relative z-10">
-                      <h3 className="text-xl font-bold text-gray-900 mb-1">{goal.title}</h3>
+                      <h3 className="text-xl font-bold text-white mb-1">{goal.title}</h3>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-2xl font-bold text-gray-900">{currencySymbol}{goal.currentAmount.toLocaleString()}</span>
-                        <span className="text-sm font-medium text-gray-400">/ {currencySymbol}{goal.targetAmount.toLocaleString()}</span>
+                        <span className="text-2xl font-bold text-white">{currencySymbol}{goal.currentAmount.toLocaleString()}</span>
+                        <span className="text-sm font-medium text-gray-500">/ {currencySymbol}{goal.targetAmount.toLocaleString()}</span>
                       </div>
                     </div>
                     
                     <div className="space-y-4 relative z-10">
                       <div>
                         <div className="flex justify-between items-end mb-2">
-                          <span className={`text-sm font-bold ${isCompleted ? 'text-green-600' : goal.color.replace('bg-', 'text-')}`}>
+                          <span className={`text-sm font-bold ${isCompleted ? 'text-emerald-400' : goal.color.replace('bg-', 'text-')}`}>
                             {goal.progress}%
                           </span>
-                          <span className="text-xs font-medium text-gray-400">
+                          <span className="text-xs font-medium text-gray-500">
                             {currencySymbol}{goal.remaining.toLocaleString()} left
                           </span>
                         </div>
-                        <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
                           <div 
-                            className={`h-full rounded-full transition-all duration-1000 ease-out ${isCompleted ? 'bg-green-500' : goal.color}`}
+                            className={`h-full rounded-full transition-all duration-1000 ease-out ${isCompleted ? 'bg-emerald-500' : goal.color.replace('bg-', 'bg-')}`}
                             style={{ width: `${goal.progress}%` }}
                           />
                         </div>
@@ -232,7 +232,7 @@ export default function Goals() {
                       {!isCompleted && (
                         <button 
                           onClick={() => setSelectedGoalForFunds(goal)}
-                          className="w-full py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-2"
+                          className="w-full py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2"
                         >
                           <Plus className="w-4 h-4" />
                           Add Funds
@@ -242,7 +242,7 @@ export default function Goals() {
                       {isCompleted && (
                         <button 
                           disabled
-                          className="w-full py-2.5 rounded-xl bg-green-50 text-sm font-medium text-green-700 opacity-80 cursor-default flex items-center justify-center gap-2 border border-green-100"
+                          className="w-full py-2.5 rounded-xl bg-emerald-500/10 text-sm font-medium text-emerald-400 cursor-default flex items-center justify-center gap-2 border border-emerald-500/20"
                         >
                           Target Reached!
                         </button>

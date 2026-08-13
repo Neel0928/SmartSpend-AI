@@ -3,10 +3,10 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 export default function TrendChart({ data = [] }) {
   return (
-    <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex flex-col h-full">
+    <div className="glass-card rounded-xl p-5 border border-white/10 flex flex-col h-full">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="font-bold text-gray-900">Monthly Trend</h3>
-        <select className="text-sm text-gray-500 bg-gray-50 border border-gray-200 rounded-md px-2 py-1 outline-none">
+        <h3 className="font-bold text-white">Monthly Trend</h3>
+        <select className="text-sm text-gray-300 bg-white/5 border border-white/10 rounded-md px-2 py-1 outline-none">
           <option>This Year</option>
           <option>Last Year</option>
         </select>
@@ -14,19 +14,19 @@ export default function TrendChart({ data = [] }) {
 
       <div className="flex items-center gap-4 mb-4 text-sm">
         <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
-          <span className="text-gray-600">Income</span>
+          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+          <span className="text-gray-300">Income</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-          <span className="text-gray-600">Expenses</span>
+          <span className="text-gray-300">Expenses</span>
         </div>
       </div>
 
       <div className="flex-1 w-full h-48">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ffffff15" />
             <XAxis 
               dataKey="name" 
               axisLine={false} 
@@ -42,12 +42,12 @@ export default function TrendChart({ data = [] }) {
             />
             <Tooltip 
               formatter={(value) => `₹${value.toLocaleString()}`}
-              contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+              contentStyle={{ backgroundColor: '#0B0F19', borderColor: '#ffffff20', borderRadius: '8px', color: '#fff' }}
             />
             <Line 
               type="monotone" 
               dataKey="income" 
-              stroke="#22c55e" 
+              stroke="#10B981" 
               strokeWidth={3} 
               dot={{ r: 4, strokeWidth: 2 }} 
               activeDot={{ r: 6 }} 
@@ -64,8 +64,8 @@ export default function TrendChart({ data = [] }) {
         </ResponsiveContainer>
       </div>
       
-      <div className="mt-4 pt-4 border-t border-gray-100">
-        <button className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
+      <div className="mt-4 pt-4 border-t border-white/10">
+        <button className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
           View Detailed Report &rarr;
         </button>
       </div>

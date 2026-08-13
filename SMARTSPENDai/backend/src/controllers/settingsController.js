@@ -16,17 +16,14 @@ exports.getSettings = async (req, res) => {
 
 exports.updateSettings = async (req, res) => {
   try {
-    const { currency, theme, monthlyBudget, notifications } = req.body;
+    const updateData = req.body;
     
-    const updateData = {};
-    if (currency !== undefined) updateData.currency = currency;
-    if (theme !== undefined) updateData.theme = theme;
-    if (monthlyBudget !== undefined) updateData.monthlyBudget = monthlyBudget;
-    if (notifications !== undefined) updateData.notifications = notifications;
+    // Prevent overriding userId
+    delete updateData.userId;
 
     const settings = await Settings.findOneAndUpdate(
       { userId: req.user.uid },
-      updateData,
+      { $set: updateData },
       { new: true, upsert: true } // upsert ensures it creates if it doesn't exist
     );
 

@@ -85,20 +85,20 @@ export default function Analytics() {
       <div className="max-w-7xl mx-auto space-y-6 animate-fade-in pb-12">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Analytics & Reports</h1>
-            <p className="text-gray-500 text-sm mt-1">Deep dive into your financial habits.</p>
+            <h1 className="text-2xl font-bold text-white">Analytics & Reports</h1>
+            <p className="text-gray-400 text-sm mt-1">Deep dive into your financial habits.</p>
           </div>
           
-          <div className="flex items-center gap-2 bg-white px-2 py-1 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex items-center gap-2 bg-white/5 px-2 py-1 rounded-xl border border-white/10 shadow-sm">
             <Filter className="w-4 h-4 text-gray-400 ml-2" />
             <select 
               value={timeRange}
               onChange={(e) => setTimeRange(e.target.value)}
-              className="bg-transparent border-none text-sm font-medium text-gray-700 py-1.5 pl-2 pr-8 focus:ring-0 outline-none cursor-pointer"
+              className="bg-transparent border-none text-sm font-medium text-gray-300 py-1.5 pl-2 pr-8 focus:ring-0 outline-none cursor-pointer"
             >
-              <option value="month">This Month</option>
-              <option value="3months">Last 3 Months</option>
-              <option value="year">This Year</option>
+              <option value="month" className="bg-[#050505]">This Month</option>
+              <option value="3months" className="bg-[#050505]">Last 3 Months</option>
+              <option value="year" className="bg-[#050505]">This Year</option>
             </select>
           </div>
         </div>
@@ -112,34 +112,34 @@ export default function Analytics() {
           <>
             {/* Top Stat Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+              <div className="glass-card p-6 rounded-3xl border border-white/10">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                  <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
                     <TrendingUp className="w-5 h-5" />
                   </div>
-                  <h3 className="text-gray-500 font-medium">Total Income</h3>
+                  <h3 className="text-gray-400 font-medium">Total Income</h3>
                 </div>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{currencySymbol}{totals.income.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-white mt-2">{currencySymbol}{totals.income.toLocaleString()}</p>
               </div>
 
-              <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+              <div className="glass-card p-6 rounded-3xl border border-white/10">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                  <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-400 border border-red-500/20">
                     <TrendingDown className="w-5 h-5" />
                   </div>
-                  <h3 className="text-gray-500 font-medium">Total Expenses</h3>
+                  <h3 className="text-gray-400 font-medium">Total Expenses</h3>
                 </div>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{currencySymbol}{totals.expense.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-white mt-2">{currencySymbol}{totals.expense.toLocaleString()}</p>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-6 rounded-3xl shadow-md text-white relative overflow-hidden">
+              <div className="bg-gradient-to-br from-emerald-600/80 to-emerald-900/80 p-6 rounded-3xl shadow-md text-white relative overflow-hidden border border-emerald-500/30">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
-                <h3 className="text-blue-100 font-medium mb-4">Net Savings</h3>
-                <p className="text-4xl font-bold mt-2">
+                <h3 className="text-emerald-100 font-medium mb-4">Net Savings</h3>
+                <p className="text-4xl font-bold mt-2 text-white">
                   {currencySymbol}{(totals.income - totals.expense).toLocaleString()}
                 </p>
                 <div className="mt-4 pt-4 border-t border-white/20">
-                  <p className="text-sm text-blue-100">
+                  <p className="text-sm text-emerald-100">
                     Savings Rate: {totals.income > 0 ? Math.round(((totals.income - totals.expense) / totals.income) * 100) : 0}%
                   </p>
                 </div>
@@ -148,9 +148,9 @@ export default function Analytics() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Income vs Expense Area Chart */}
-              <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 col-span-1 lg:col-span-2">
-                <h3 className="font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-blue-500" />
+              <div className="glass-card p-6 rounded-3xl border border-white/10 col-span-1 lg:col-span-2">
+                <h3 className="font-bold text-white mb-6 flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-emerald-500" />
                   Income vs Expenses Trend
                 </h3>
                 <div className="h-80 w-full">
@@ -158,20 +158,20 @@ export default function Analytics() {
                     <AreaChart data={trendData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                       <defs>
                         <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#22C55E" stopOpacity={0.3}/>
-                          <stop offset="95%" stopColor="#22C55E" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#10B981" stopOpacity={0.3}/>
+                          <stop offset="95%" stopColor="#10B981" stopOpacity={0}/>
                         </linearGradient>
                         <linearGradient id="colorExpense" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor="#EF4444" stopOpacity={0.3}/>
                           <stop offset="95%" stopColor="#EF4444" stopOpacity={0}/>
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F3F4F6" />
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" />
                       <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF' }} dy={10} />
                       <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#9CA3AF' }} tickFormatter={(val) => `${currencySymbol}${val/1000}k`} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px' }} />
-                      <Area type="monotone" dataKey="income" name="Income" stroke="#22C55E" strokeWidth={3} fillOpacity={1} fill="url(#colorIncome)" />
+                      <Area type="monotone" dataKey="income" name="Income" stroke="#10B981" strokeWidth={3} fillOpacity={1} fill="url(#colorIncome)" />
                       <Area type="monotone" dataKey="expense" name="Expenses" stroke="#EF4444" strokeWidth={3} fillOpacity={1} fill="url(#colorExpense)" />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -179,12 +179,12 @@ export default function Analytics() {
               </div>
 
               {/* Category Breakdown Donut Chart */}
-              <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
-                <h3 className="font-bold text-gray-900 mb-2">Top Spending Categories</h3>
-                <p className="text-sm text-gray-500 mb-6">Where your money went in the selected period.</p>
+              <div className="glass-card p-6 rounded-3xl border border-white/10 flex flex-col">
+                <h3 className="font-bold text-white mb-2">Top Spending Categories</h3>
+                <p className="text-sm text-gray-400 mb-6">Where your money went in the selected period.</p>
                 
                 {categoryData.length === 0 ? (
-                  <div className="flex-1 flex items-center justify-center text-gray-400 text-sm">
+                  <div className="flex-1 flex items-center justify-center text-gray-500 text-sm">
                     No expense data found.
                   </div>
                 ) : (
@@ -216,9 +216,9 @@ export default function Analytics() {
                         <div key={index} className="flex items-center justify-between text-sm">
                           <div className="flex items-center gap-2">
                             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
-                            <span className="text-gray-600 truncate max-w-[100px]" title={entry.name}>{entry.name}</span>
+                            <span className="text-gray-400 truncate max-w-[100px]" title={entry.name}>{entry.name}</span>
                           </div>
-                          <span className="font-bold text-gray-900">{currencySymbol}{entry.value.toLocaleString()}</span>
+                          <span className="font-bold text-white">{currencySymbol}{entry.value.toLocaleString()}</span>
                         </div>
                       ))}
                     </div>
@@ -227,29 +227,29 @@ export default function Analytics() {
               </div>
               
               {/* Cash Flow Analysis */}
-              <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                <h3 className="font-bold text-gray-900 mb-6">Cash Flow Analysis</h3>
+              <div className="glass-card p-6 rounded-3xl border border-white/10">
+                <h3 className="font-bold text-white mb-6">Cash Flow Analysis</h3>
                 <div className="space-y-6">
                   <div>
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="text-gray-600 font-medium">Income Utilization</span>
-                      <span className="font-bold text-gray-900">
+                      <span className="text-gray-400 font-medium">Income Utilization</span>
+                      <span className="font-bold text-white">
                         {totals.income > 0 ? Math.min(Math.round((totals.expense / totals.income) * 100), 100) : 0}%
                       </span>
                     </div>
-                    <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
                       <div 
                         className={`h-full rounded-full transition-all duration-1000 ${
-                          (totals.expense / totals.income) > 0.9 ? 'bg-red-500' : 'bg-blue-500'
+                          (totals.expense / totals.income) > 0.9 ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]'
                         }`}
                         style={{ width: `${totals.income > 0 ? Math.min((totals.expense / totals.income) * 100, 100) : 0}%` }}
                       />
                     </div>
                   </div>
                   
-                  <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                    <h4 className="font-bold text-gray-900 text-sm mb-2">AI Insight</h4>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                  <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                    <h4 className="font-bold text-white text-sm mb-2">AI Insight</h4>
+                    <p className="text-sm text-gray-300 leading-relaxed">
                       {totals.expense > totals.income 
                         ? `You have spent ${currencySymbol}${(totals.expense - totals.income).toLocaleString()} more than you earned in this period. Consider reviewing your top categories to cut back.`
                         : `Great job! You saved ${currencySymbol}${(totals.income - totals.expense).toLocaleString()} this period. Consider moving this to your savings goals.`}

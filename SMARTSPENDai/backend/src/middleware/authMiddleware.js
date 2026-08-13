@@ -9,13 +9,13 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
 
       // Verify token
-      if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-        // If Firebase Admin is fully configured, verify the token
+      if (process.env.NODE_ENV === 'production' || process.env.FIREBASE_SERVICE_ACCOUNT) {
+        // In production, or if configured, verify the real Firebase token
         const decodedToken = await admin.auth().verifyIdToken(token);
         req.user = decodedToken;
       } else {
-        // MOCK AUTH for local development without Service Account
-        // In production, you MUST use the block above
+        // MOCK AUTH for local development ONLY without Service Account
+        // In production, this block is never reached.
         console.warn('Firebase Admin not configured. Using Mock Auth for request.');
         
         // We simulate a verified token by decoding the JWT locally (just reading the payload)

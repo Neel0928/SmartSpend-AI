@@ -160,7 +160,7 @@ export default function Dashboard() {
         <div className="flex justify-end mb-4 sm:hidden">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-sm flex items-center gap-2"
+            className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-[0_0_15px_rgba(16,185,129,0.3)] flex items-center gap-2"
           >
             <Plus className="w-4 h-4" /> Add Transaction
           </button>
@@ -172,43 +172,43 @@ export default function Dashboard() {
             title="Total Income"
             amount={formatCurrency(totals.income)}
             icon={ArrowDownToLine}
-            iconBg="bg-green-100 text-green-600"
+            iconBg="bg-emerald-500/20 text-emerald-400"
           />
           <SummaryCard
             title="Total Expenses"
             amount={formatCurrency(totals.expenses)}
             icon={ArrowUpToLine}
-            iconBg="bg-red-100 text-red-600"
+            iconBg="bg-red-500/20 text-red-400"
           />
           <SummaryCard
             title="Current Balance"
             amount={formatCurrency(totals.balance)}
             icon={WalletCards}
-            iconBg="bg-blue-100 text-blue-600"
+            iconBg="bg-blue-500/20 text-blue-400"
           />
           <SummaryCard
             title="Savings Rate"
             amount={`${totals.savingsRate.toFixed(1)}%`}
             icon={TrendingUp}
-            iconBg="bg-purple-100 text-purple-600"
+            iconBg="bg-purple-500/20 text-purple-400"
           />
         </div>
 
         {/* Global Monthly Budget Progress */}
         {monthlyBudget > 0 && (
-          <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
+          <div className="glass-card rounded-xl p-5 border border-white/10 flex flex-col gap-3">
             <div className="flex justify-between items-end">
               <div>
-                <h3 className="text-gray-500 text-sm font-medium">Overall Monthly Budget</h3>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{formatCurrency(totals.expenses)} <span className="text-sm font-medium text-gray-400">/ {formatCurrency(monthlyBudget)}</span></p>
+                <h3 className="text-gray-400 text-sm font-medium">Overall Monthly Budget</h3>
+                <p className="text-2xl font-bold text-white mt-1">{formatCurrency(totals.expenses)} <span className="text-sm font-medium text-gray-500">/ {formatCurrency(monthlyBudget)}</span></p>
               </div>
-              <span className={`text-sm font-bold ${isOverBudget ? 'text-red-500' : 'text-blue-600'}`}>
+              <span className={`text-sm font-bold ${isOverBudget ? 'text-red-400' : 'text-emerald-400'}`}>
                 {budgetProgress.toFixed(1)}%
               </span>
             </div>
-            <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+            <div className="w-full bg-white/5 rounded-full h-2.5 overflow-hidden">
               <div 
-                className={`h-2.5 rounded-full ${isOverBudget ? 'bg-red-500' : 'bg-blue-500'} transition-all duration-500`} 
+                className={`h-2.5 rounded-full ${isOverBudget ? 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]'} transition-all duration-500`} 
                 style={{ width: `${budgetProgress}%` }}
               ></div>
             </div>

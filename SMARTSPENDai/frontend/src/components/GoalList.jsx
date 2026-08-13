@@ -22,7 +22,7 @@ const ICON_MAP = {
 export default function GoalList({ customGoals }) {
   const navigate = useNavigate();
   
-  const displayGoals = customGoals ? customGoals.map(g => ({
+  const displayGoals = customGoals && customGoals.length > 0 ? customGoals.map(g => ({
     name: g.title,
     saved: g.currentAmount,
     target: g.targetAmount,
@@ -30,13 +30,13 @@ export default function GoalList({ customGoals }) {
     color: g.color || 'bg-blue-500',
     bg: (g.color || 'bg-blue-500').replace('bg-', 'bg-').replace('500', '100'),
     text: (g.color || 'bg-blue-500').replace('bg-', 'text-')
-  })).slice(0, 3) : mockGoals; // Show top 3 max
+  })).slice(0, 3) : []; // Show top 3 max
 
   return (
-    <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex flex-col h-full">
+    <div className="glass-card rounded-xl p-5 border border-white/10 flex flex-col h-full">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="font-bold text-gray-900">Goals Progress</h3>
-        <button onClick={() => navigate('/goals')} className="text-sm text-blue-600 font-medium hover:text-blue-700">View All</button>
+        <h3 className="font-bold text-white">Goals Progress</h3>
+        <button onClick={() => navigate('/goals')} className="text-sm text-emerald-400 font-medium hover:text-emerald-300 transition-colors">View All</button>
       </div>
 
       <div className="flex-1 space-y-5">
@@ -52,16 +52,16 @@ export default function GoalList({ customGoals }) {
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${goal.bg} ${goal.text}`}>
                       <goal.icon className="w-4 h-4" strokeWidth={1.5} />
                     </div>
-                    <p className="text-sm font-semibold text-gray-900">{goal.name}</p>
+                    <p className="text-sm font-semibold text-white">{goal.name}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-400">
                       ₹{goal.saved.toLocaleString()} / ₹{goal.target.toLocaleString()}
                     </p>
-                    <p className="text-xs font-bold text-gray-700 mt-0.5">{percentage}%</p>
+                    <p className="text-xs font-bold text-gray-300 mt-0.5">{percentage}%</p>
                   </div>
                 </div>
-                <div className="w-full bg-gray-100 rounded-full h-1.5 mt-1">
+                <div className="w-full bg-white/10 rounded-full h-1.5 mt-1">
                   <div 
                     className={`${goal.color} h-1.5 rounded-full`} 
                     style={{ width: `${Math.min(percentage, 100)}%` }}

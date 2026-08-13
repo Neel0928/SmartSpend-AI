@@ -10,6 +10,7 @@ import Income from './pages/Income';
 import Goals from './pages/Goals';
 import Settings from './pages/Settings';
 import Analytics from './pages/Analytics';
+import Landing from './pages/Landing';
 import { SettingsProvider } from './context/SettingsContext';
 
 function ProtectedRoute({ children }) {
@@ -30,7 +31,9 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/signup" element={<Register />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/budgets" element={<ProtectedRoute><Budgets /></ProtectedRoute>} />
             <Route path="/expenses" element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
             <Route path="/income" element={<ProtectedRoute><Income /></ProtectedRoute>} />

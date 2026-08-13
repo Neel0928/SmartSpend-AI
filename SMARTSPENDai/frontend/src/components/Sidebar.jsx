@@ -18,9 +18,19 @@ import {
 } from 'lucide-react';
 
 export default function Sidebar() {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
   const [insight, setInsight] = useState('');
   const [loadingInsight, setLoadingInsight] = useState(true);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  
+  const handleLogout = async () => {
+    try {
+      await logout();
+      window.location.href = '/login'; // Alternatively use useNavigate if imported
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
 
   useEffect(() => {
     const fetchInsight = async () => {
@@ -40,7 +50,7 @@ export default function Sidebar() {
   }, [currentUser]);
 
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: LayoutDashboard },
+    { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Expenses', path: '/expenses', icon: WalletCards },
     { name: 'Income', path: '/income', icon: ArrowDownToLine },
     { name: 'Budgets', path: '/budgets', icon: PieChart },
@@ -51,10 +61,10 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="w-64 bg-[#0B0F19] h-screen flex flex-col text-gray-300">
+    <div className="w-64 bg-[#0a0a0a]/80 backdrop-blur-xl border-r border-white/10 h-screen flex flex-col text-gray-300 relative z-20">
       {/* Logo */}
       <div className="p-6 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/50">
+        <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xl shadow-[0_0_15px_rgba(16,185,129,0.2)]">
           S
         </div>
         <div>
@@ -71,7 +81,7 @@ export default function Sidebar() {
             to={item.path}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm font-medium ${isActive
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+                ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]'
                 : 'hover:bg-white/5 hover:text-white'
               }`
             }
@@ -89,14 +99,14 @@ export default function Sidebar() {
 
       {/* AI Insight Quick Card */}
       <div className="px-4 pb-4">
-        <div className="bg-[#1A1F36] rounded-xl p-4 border border-white/5">
+        <div className="glass-card rounded-xl p-4 border border-white/10">
           <div className="flex items-center gap-2 text-white mb-2">
-            <Sparkles className="w-4 h-4 text-purple-400" />
+            <Sparkles className="w-4 h-4 text-emerald-400" />
             <span className="text-sm font-semibold">AI Insight</span>
           </div>
           {loadingInsight ? (
             <div className="flex justify-center items-center py-3">
-              <Loader2 className="w-4 h-4 text-purple-400 animate-spin" />
+              <Loader2 className="w-4 h-4 text-emerald-400 animate-spin" />
             </div>
           ) : (
             <p className="text-xs text-gray-400 leading-relaxed mb-3 line-clamp-3">
@@ -110,8 +120,11 @@ export default function Sidebar() {
       </div>
 
       {/* User Profile */}
-      <div className="p-4 border-t border-white/10">
-        <div className="flex items-center gap-3">
+      <div className="p-4 border-t border-white/10 relative">
+        <button 
+          onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+          className="w-full flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 transition-colors text-left"
+        >
           <div className="w-9 h-9 rounded-full bg-gray-600 flex items-center justify-center overflow-hidden border border-white/20">
             {currentUser?.photoURL ? (
               <img src={currentUser.photoURL} alt="Profile" className="w-full h-full object-cover" />
@@ -128,7 +141,25 @@ export default function Sidebar() {
             </p>
           </div>
           <ChevronDown className="w-4 h-4 text-gray-400" />
-        </div>
+        </button>
+
+        {/* Dropdown Menu */}
+        {profileMenuOpen && (
+          <div className="absolute bottom-[calc(100%+8px)] left-4 right-4 bg-[#121212] border border-white/10 rounded-xl shadow-xl overflow-hidden z-50 animate-fade-in">
+            <Link to="/settings" className="block px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors border-b border-white/5">
+              View Profile
+            </Link>
+            <Link to="/settings" className="block px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors border-b border-white/5">
+              Settings
+            </Link>
+            <button 
+              onClick={handleLogout} 
+              className="w-full text-left px-4 py-3 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
+            >
+              Sign Out
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

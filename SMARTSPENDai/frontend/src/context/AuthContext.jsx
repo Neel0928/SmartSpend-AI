@@ -55,7 +55,14 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {loading ? (
+        <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center">
+          <div className="w-12 h-12 border-4 border-white/10 border-t-emerald-500 rounded-full animate-spin mb-4"></div>
+          <p className="text-gray-400 font-medium animate-pulse">Initializing SmartSpend AI...</p>
+        </div>
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 }

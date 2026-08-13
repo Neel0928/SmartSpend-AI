@@ -72,18 +72,18 @@ export default function AddTransactionModal({ isOpen, onClose, onTransactionAdde
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
-        <div className="flex justify-between items-center p-6 border-b border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900">Add Transaction</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="glass-card border border-white/10 rounded-xl shadow-2xl shadow-black/50 w-full max-w-md overflow-hidden">
+        <div className="flex justify-between items-center p-6 border-b border-white/10">
+          <h2 className="text-xl font-bold text-white">Add Transaction</h2>
+          <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {error && (
-            <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
+            <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-lg text-sm">
               {error}
             </div>
           )}
@@ -94,7 +94,7 @@ export default function AddTransactionModal({ isOpen, onClose, onTransactionAdde
                 type="radio" name="type" value="expense" className="peer sr-only" 
                 checked={formData.type === 'expense'} onChange={handleChange} 
               />
-              <div className="text-center py-2 px-4 rounded-lg border-2 peer-checked:border-red-500 peer-checked:bg-red-50 peer-checked:text-red-700 text-gray-500 font-medium transition-colors">
+              <div className="text-center py-2 px-4 rounded-lg border border-white/10 peer-checked:border-red-500 peer-checked:bg-red-500/20 peer-checked:text-red-400 text-gray-400 hover:bg-white/5 font-medium transition-colors">
                 Expense
               </div>
             </label>
@@ -103,59 +103,59 @@ export default function AddTransactionModal({ isOpen, onClose, onTransactionAdde
                 type="radio" name="type" value="income" className="peer sr-only" 
                 checked={formData.type === 'income'} onChange={handleChange} 
               />
-              <div className="text-center py-2 px-4 rounded-lg border-2 peer-checked:border-green-500 peer-checked:bg-green-50 peer-checked:text-green-700 text-gray-500 font-medium transition-colors">
+              <div className="text-center py-2 px-4 rounded-lg border border-white/10 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/20 peer-checked:text-emerald-400 text-gray-400 hover:bg-white/5 font-medium transition-colors">
                 Income
               </div>
             </label>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Amount ({currencySymbol})</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Amount ({currencySymbol})</label>
             <input 
               type="number" name="amount" required min="1" step="any"
               value={formData.amount} onChange={handleChange}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 py-2 px-3 border"
+              className="w-full bg-white/5 border border-white/10 text-white rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 py-2 px-3 placeholder-gray-500 outline-none"
               placeholder="0.00"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Name</label>
             <input 
               type="text" name="name" required
               value={formData.name} onChange={handleChange}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 py-2 px-3 border"
+              className="w-full bg-white/5 border border-white/10 text-white rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 py-2 px-3 placeholder-gray-500 outline-none"
               placeholder="e.g. Zomato, Salary"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Category</label>
               <select 
                 name="category" required
                 value={formData.category} onChange={handleChange}
-                className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 py-2 px-3 border"
+                className="w-full bg-white/5 border border-white/10 text-white rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 py-2 px-3 outline-none"
               >
                 {categories[formData.type].map(c => (
-                  <option key={c} value={c}>{c}</option>
+                  <option key={c} value={c} className="bg-[#050505] text-white">{c}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1">Date</label>
               <input 
                 type="date" name="date" required
                 value={formData.date} onChange={handleChange}
-                className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 py-2 px-3 border"
+                className="w-full bg-white/5 border border-white/10 text-white rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 py-2 px-3 outline-none"
               />
             </div>
           </div>
 
-          <div className="pt-4 border-t border-gray-100">
+          <div className="pt-4 border-t border-white/10">
             <button 
               type="submit" disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg transition-colors disabled:opacity-50"
+              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)] font-medium py-2.5 rounded-lg transition-colors disabled:opacity-50"
             >
               {loading ? 'Saving...' : 'Save Transaction'}
             </button>
