@@ -12,6 +12,8 @@ backend/.env.local
 *.env
 atlas-credentials.env
 .env.example
+README.md
+
 
 # Build outputs
 dist/
