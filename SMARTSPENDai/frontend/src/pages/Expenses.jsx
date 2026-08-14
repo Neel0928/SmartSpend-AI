@@ -149,13 +149,13 @@ export default function Expenses() {
             <h1 className="text-2xl font-bold text-white">Expenses</h1>
             <p className="text-gray-400 text-sm mt-1">Track, manage and analyze your spending</p>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="relative">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
+            <div className="relative w-full sm:w-auto mb-2 sm:mb-0">
               <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 transform -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search"
-                className="pl-10 pr-14 py-2.5 rounded-xl border border-white/10 text-sm w-80 md:w-96 lg:w-[400px] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all bg-white/5 text-white placeholder-gray-500 relative z-10"
+                className="pl-10 pr-14 py-2 sm:py-2.5 rounded-xl border border-white/10 text-sm w-full sm:w-64 md:w-80 lg:w-[400px] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all bg-white/5 text-white placeholder-gray-500 relative z-10"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -164,18 +164,18 @@ export default function Expenses() {
                 <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-medium text-gray-400 bg-white/10 rounded border border-white/10">K</kbd>
               </div>
             </div>
-            <button className="flex items-center gap-2 glass-card border border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm whitespace-nowrap">
+            <button className="flex items-center gap-2 glass-card border border-white/10 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm whitespace-nowrap">
               <Calendar className="w-4 h-4 text-emerald-400" />
-              {dateRangeStr}
-              <ChevronDown className="w-4 h-4 text-gray-500 ml-1" />
+              <span className="hidden sm:inline">{dateRangeStr}</span>
+              <span className="sm:hidden">Date</span>
             </button>
             <button
               onClick={() => setIsAddExpenseModalOpen(true)}
-              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)] whitespace-nowrap"
+              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)] whitespace-nowrap"
             >
               <Plus className="w-4 h-4" />
-              Add Expense
-              <ChevronDown className="w-4 h-4 text-emerald-200 ml-1" />
+              <span className="hidden sm:inline">Add Expense</span>
+              <span className="sm:hidden">Add</span>
             </button>
           </div>
         </div>

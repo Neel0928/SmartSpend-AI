@@ -84,18 +84,19 @@ export default function Budgets() {
             <h1 className="text-2xl font-bold text-white">Budgets</h1>
             <p className="text-gray-400 text-sm mt-1">Plan, track and manage your monthly budgets.</p>
           </div>
-          <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 glass-card border border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <button className="flex items-center gap-2 glass-card border border-white/10 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm">
               <Calendar className="w-4 h-4 text-emerald-400" />
-              {currentMonthYear}
+              <span className="hidden sm:inline">{currentMonthYear}</span>
+              <span className="sm:hidden">Date</span>
             </button>
-            <button className="flex items-center gap-2 glass-card border border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm">
+            <button className="hidden sm:flex items-center gap-2 glass-card border border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm">
               <Settings className="w-4 h-4 text-gray-500" />
-              Budget Settings
+              Settings
             </button>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)]"
             >
               <Plus className="w-4 h-4" />
               Create Budget

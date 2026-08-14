@@ -14,9 +14,9 @@ export default function SpendingChart({ data = [] }) {
         </select>
       </div>
 
-      <div className="flex-1 flex items-center">
+      <div className="flex-1 flex flex-col sm:flex-row items-center">
         {/* Doughnut Chart */}
-        <div className="w-1/2 relative h-48">
+        <div className="w-full sm:w-1/2 relative h-48 mb-4 sm:mb-0">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -42,7 +42,7 @@ export default function SpendingChart({ data = [] }) {
         </div>
 
         {/* Legend */}
-        <div className="w-1/2 pl-4 space-y-3">
+        <div className="w-full sm:w-1/2 sm:pl-4 space-y-3">
           {data.map((item, index) => (
             <div key={index} className="flex items-center text-xs">
               <div 

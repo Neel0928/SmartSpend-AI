@@ -145,19 +145,19 @@ export default function Income() {
             <h1 className="text-2xl font-bold text-white">Income</h1>
             <p className="text-gray-400 text-sm mt-1">Track all your income sources and growth over time.</p>
           </div>
-          <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 glass-card border border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm whitespace-nowrap">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <button className="flex items-center gap-2 glass-card border border-white/10 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm whitespace-nowrap">
               <Calendar className="w-4 h-4 text-emerald-400" />
-              {dateRangeStr}
-              <ChevronDown className="w-4 h-4 text-gray-500 ml-1" />
+              <span className="hidden sm:inline">{dateRangeStr}</span>
+              <span className="sm:hidden">Date</span>
             </button>
             <button 
               onClick={() => setIsAddIncomeModalOpen(true)}
-              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)] whitespace-nowrap"
+              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)] whitespace-nowrap"
             >
               <Plus className="w-4 h-4" />
-              Add Income
-              <ChevronDown className="w-4 h-4 text-emerald-200 ml-1" />
+              <span className="hidden sm:inline">Add Income</span>
+              <span className="sm:hidden">Add</span>
             </button>
           </div>
         </div>
