@@ -8,9 +8,9 @@ export default function SummaryCard({ title, amount, trend, icon: Icon, iconBg, 
         <div className={`w-12 h-12 rounded-full flex items-center justify-center ${iconBg}`}>
           <Icon className="w-6 h-6" strokeWidth={1.5} />
         </div>
-        <div>
-          <h3 className="text-gray-400 text-sm font-medium">{title}</h3>
-          <p className="text-2xl font-bold text-white mt-1">{amount}</p>
+        <div className="min-w-0">
+          <h3 className="text-gray-400 text-sm font-medium truncate">{title}</h3>
+          <p className="text-2xl font-bold text-white mt-1 truncate">{amount}</p>
         </div>
       </div>
       

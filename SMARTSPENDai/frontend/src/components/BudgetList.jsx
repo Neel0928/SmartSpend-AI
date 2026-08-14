@@ -43,12 +43,12 @@ export default function BudgetList({ standalone = true, customBudgets = null }) 
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${budget.bg} ${budget.text}`}>
                     <budget.icon className="w-5 h-5" strokeWidth={1.5} />
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-white">{budget.name}</p>
-                    <p className="text-xs text-gray-400">{currencySymbol}{budget.spent.toLocaleString()} / {currencySymbol}{budget.limit.toLocaleString()}</p>
+                  <div className="min-w-0 flex-1 pr-2">
+                    <p className="text-sm font-semibold text-white truncate">{budget.name}</p>
+                    <p className="text-xs text-gray-400 truncate">{currencySymbol}{budget.spent.toLocaleString()} / {currencySymbol}{budget.limit.toLocaleString()}</p>
                   </div>
                 </div>
-                <span className="text-sm font-bold text-gray-300">{percentage}%</span>
+                <span className="text-sm font-bold text-gray-300 ml-2 whitespace-nowrap">{percentage}%</span>
               </div>
               <div className="w-full bg-white/10 rounded-full h-2">
                 <div

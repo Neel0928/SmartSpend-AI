@@ -197,10 +197,10 @@ export default function Dashboard() {
         {/* Global Monthly Budget Progress */}
         {monthlyBudget > 0 && (
           <div className="glass-card rounded-xl p-5 border border-white/10 flex flex-col gap-3">
-            <div className="flex justify-between items-end">
-              <div>
-                <h3 className="text-gray-400 text-sm font-medium">Overall Monthly Budget</h3>
-                <p className="text-2xl font-bold text-white mt-1">{formatCurrency(totals.expenses)} <span className="text-sm font-medium text-gray-500">/ {formatCurrency(monthlyBudget)}</span></p>
+            <div className="flex justify-between items-end min-w-0">
+              <div className="min-w-0 flex-1 pr-4">
+                <h3 className="text-gray-400 text-sm font-medium truncate">Overall Monthly Budget</h3>
+                <p className="text-2xl font-bold text-white mt-1 truncate">{formatCurrency(totals.expenses)} <span className="text-sm font-medium text-gray-500 whitespace-nowrap">/ {formatCurrency(monthlyBudget)}</span></p>
               </div>
               <span className={`text-sm font-bold ${isOverBudget ? 'text-red-400' : 'text-emerald-400'}`}>
                 {budgetProgress.toFixed(1)}%

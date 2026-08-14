@@ -48,14 +48,14 @@ export default function GoalList({ customGoals }) {
             return (
               <div key={idx}>
                 <div className="flex justify-between items-center mb-2">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${goal.bg} ${goal.text}`}>
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className={`w-8 h-8 flex-shrink-0 rounded-lg flex items-center justify-center ${goal.bg} ${goal.text}`}>
                       <goal.icon className="w-4 h-4" strokeWidth={1.5} />
                     </div>
-                    <p className="text-sm font-semibold text-white">{goal.name}</p>
+                    <p className="text-sm font-semibold text-white truncate pr-2">{goal.name}</p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-xs text-gray-400">
+                  <div className="text-right flex-shrink-0 ml-2">
+                    <p className="text-xs text-gray-400 whitespace-nowrap">
                       ₹{goal.saved.toLocaleString()} / ₹{goal.target.toLocaleString()}
                     </p>
                     <p className="text-xs font-bold text-gray-300 mt-0.5">{percentage}%</p>
