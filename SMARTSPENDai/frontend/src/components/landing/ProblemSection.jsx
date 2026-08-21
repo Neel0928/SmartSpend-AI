@@ -21,7 +21,7 @@ const ProblemSection = () => {
           className="text-center"
         >
           <p className="text-sm font-semibold tracking-wide text-gray-500 uppercase mb-8">
-            Everything you need to take control of your finances
+            One calm place for every money decision
           </p>
           
           <div className="flex flex-wrap justify-center gap-y-4 gap-x-8 md:gap-x-12">

@@ -14,9 +14,11 @@ import ReceiptScannerCard from '../components/ReceiptScannerCard';
 import AddTransactionModal from '../components/AddTransactionModal';
 import { ArrowDownToLine, ArrowUpToLine, WalletCards, TrendingUp, Plus } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
+import { getMonthLabel, isDateInBudgetMonth } from '../utils/dates';
 
 export default function Dashboard() {
   const { currencySymbol, settings } = useSettings();
+  const timeZone = settings?.timezone || 'UTC';
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [scannedData, setScannedData] = useState(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -25,6 +27,7 @@ export default function Dashboard() {
   const [budgets, setBudgets] = useState(null);
   const [goals, setGoals] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [monthlyExpenses, setMonthlyExpenses] = useState(0);
 
   // Summary State
   const [totals, setTotals] = useState({
@@ -56,19 +59,23 @@ export default function Dashboard() {
         setTransactions(txData);
         setGoals(goalsData);
         
-        // Calculate spent for budgets using transactions for the current month
-        const currentDate = new Date();
-        const currentMonthStr = currentDate.toISOString().slice(0, 7);
-        const computedBudgets = budgetsData.map(budget => {
+        const currentMonth = getMonthLabel(new Date(), timeZone);
+        const computedBudgets = budgetsData
+          .filter((budget) => budget.month === currentMonth)
+          .map(budget => {
           const categoryExpenses = txData.filter(t =>
             t.type === 'expense' &&
             t.category === budget.category &&
-            t.date.startsWith(currentMonthStr)
+            isDateInBudgetMonth(t.date, budget.month, timeZone)
           );
-          const totalSpent = categoryExpenses.reduce((sum, t) => sum + t.amount, 0);
+          const totalSpent = categoryExpenses.reduce((sum, t) => sum + Math.abs(t.amount), 0);
           return { ...budget, spent: totalSpent };
         });
         setBudgets(computedBudgets);
+
+        setMonthlyExpenses(txData
+          .filter((transaction) => transaction.type === 'expense' && isDateInBudgetMonth(transaction.date, currentMonth, timeZone))
+          .reduce((sum, transaction) => sum + Math.abs(transaction.amount), 0));
         
         calculateMetrics(txData);
       } catch (error) {
@@ -79,7 +86,7 @@ export default function Dashboard() {
     };
 
     fetchTransactions();
-  }, [refreshTrigger]);
+  }, [refreshTrigger, timeZone]);
 
   const calculateMetrics = (txData) => {
     let inc = 0;
@@ -151,21 +158,12 @@ export default function Dashboard() {
   const formatCurrency = (val) => `${currencySymbol}${val.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   const monthlyBudget = settings?.monthlyBudget || 0;
-  const budgetProgress = monthlyBudget > 0 ? Math.min(100, (totals.expenses / monthlyBudget) * 100) : 0;
-  const isOverBudget = totals.expenses > monthlyBudget;
+  const budgetProgress = monthlyBudget > 0 ? Math.min(100, (monthlyExpenses / monthlyBudget) * 100) : 0;
+  const isOverBudget = monthlyExpenses > monthlyBudget;
 
   return (
     <DashboardLayout onAddClick={() => setIsModalOpen(true)}>
       <div className="space-y-6 relative">
-        <div className="flex justify-end mb-4 sm:hidden">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-[0_0_15px_rgba(16,185,129,0.3)] flex items-center gap-2"
-          >
-            <Plus className="w-4 h-4" /> Add Transaction
-          </button>
-        </div>
-
         {/* Row 1: Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <SummaryCard
@@ -200,7 +198,7 @@ export default function Dashboard() {
             <div className="flex justify-between items-end min-w-0">
               <div className="min-w-0 flex-1 pr-4">
                 <h3 className="text-gray-400 text-sm font-medium truncate">Overall Monthly Budget</h3>
-                <p className="text-2xl font-bold text-white mt-1 truncate">{formatCurrency(totals.expenses)} <span className="text-sm font-medium text-gray-500 whitespace-nowrap">/ {formatCurrency(monthlyBudget)}</span></p>
+                <p className="text-2xl font-bold text-white mt-1 truncate">{formatCurrency(monthlyExpenses)} <span className="text-sm font-medium text-gray-500 whitespace-nowrap">/ {formatCurrency(monthlyBudget)}</span></p>
               </div>
               <span className={`text-sm font-bold ${isOverBudget ? 'text-red-400' : 'text-emerald-400'}`}>
                 {budgetProgress.toFixed(1)}%

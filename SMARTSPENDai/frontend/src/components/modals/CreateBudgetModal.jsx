@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { X, Loader2 } from 'lucide-react';
 import { createBudget } from '../../services/budgetService';
+import { useSettings } from '../../context/SettingsContext';
 
 export default function CreateBudgetModal({ isOpen, onClose, onBudgetCreated, currentMonthYear }) {
+  const { currencySymbol } = useSettings();
   const [category, setCategory] = useState('');
   const [limit, setLimit] = useState('');
-  const [month, setMonth] = useState(currentMonthYear || '');
+  const month = currentMonthYear || '';
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -66,7 +68,7 @@ export default function CreateBudgetModal({ isOpen, onClose, onBudgetCreated, cu
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Limit (₹)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Limit ({currencySymbol})</label>
             <input
               type="number"
               min="0"

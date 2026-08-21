@@ -1,5 +1,6 @@
 import React from 'react';
-import { Utensils, ArrowDownCircle, Car, ShoppingBag, Zap, DollarSign, Briefcase, Plus, HeartPulse } from 'lucide-react';
+import { Utensils, Car, ShoppingBag, Zap, DollarSign, Briefcase, Plus, HeartPulse } from 'lucide-react';
+import { useSettings } from '../context/SettingsContext';
 
 const categoryIcons = {
   'Food & Dining': { icon: Utensils, bg: 'bg-red-500/20', text: 'text-red-400' },
@@ -14,6 +15,7 @@ const categoryIcons = {
 };
 
 export default function TransactionList({ transactions, loading }) {
+  const { currencySymbol } = useSettings();
   if (loading) {
     return (
       <div className="glass-card rounded-xl p-5 border border-white/10 h-full flex items-center justify-center min-h-[300px]">
@@ -53,7 +55,7 @@ export default function TransactionList({ transactions, loading }) {
                 </div>
                 <div className="text-right">
                   <p className={`text-sm font-bold ${tx.amount > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {tx.amount > 0 ? '+' : ''}₹{Math.abs(tx.amount).toLocaleString()}
+                    {tx.amount > 0 ? '+' : ''}{currencySymbol}{Math.abs(tx.amount).toLocaleString()}
                   </p>
                   <p className="text-xs text-gray-400">{dateStr}</p>
                 </div>

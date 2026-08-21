@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DashboardLayout from '../layouts/DashboardLayout';
-import { Calendar, Settings, Plus, Wallet, CreditCard, TrendingUp, Bell } from 'lucide-react';
+import { Calendar, Settings, Plus, Wallet, CreditCard, TrendingUp, Bell, Trash2 } from 'lucide-react';
 import BudgetOverviewChart from '../components/charts/BudgetOverviewChart';
 import BudgetStatusChart from '../components/charts/BudgetStatusChart';
 import BudgetList from '../components/BudgetList';
 import CreateBudgetModal from '../components/modals/CreateBudgetModal';
-import { getBudgets } from '../services/budgetService';
+import { getBudgets, deleteBudget } from '../services/budgetService';
 import { getTransactions } from '../services/transactionService';
-import { Loader2 } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
+import { useNavigate } from 'react-router-dom';
+import { getMonthLabel, isDateInBudgetMonth } from '../utils/dates';
 
 export default function Budgets() {
-  const { currencySymbol } = useSettings();
+  const { currencySymbol, settings } = useSettings();
+  const navigate = useNavigate();
+  const timeZone = settings?.timezone || 'UTC';
+  const currentMonthYear = getMonthLabel(new Date(), timeZone);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [budgets, setBudgets] = useState([]);
-  const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       const [budgetsData, transactionsData] = await Promise.all([
@@ -25,19 +28,16 @@ export default function Budgets() {
         getTransactions()
       ]);
 
-      // Calculate spent amount for each budget based on transactions
-      const currentDate = new Date();
-      const currentMonthStr = currentDate.toISOString().slice(0, 7); // e.g. "2026-08"
-
-      const computedBudgets = budgetsData.map(budget => {
-        // Find all expenses in this budget's category for the current month
+      const computedBudgets = budgetsData
+        .filter((budget) => budget.month === currentMonthYear)
+        .map(budget => {
         const categoryExpenses = transactionsData.filter(t =>
           t.type === 'expense' &&
           t.category === budget.category &&
-          t.date.startsWith(currentMonthStr)
+          isDateInBudgetMonth(t.date, budget.month, timeZone)
         );
 
-        const totalSpent = categoryExpenses.reduce((sum, t) => sum + t.amount, 0);
+        const totalSpent = categoryExpenses.reduce((sum, t) => sum + Math.abs(t.amount), 0);
 
         return {
           ...budget,
@@ -46,20 +46,27 @@ export default function Budgets() {
       });
 
       setBudgets(computedBudgets);
-      setTransactions(transactionsData);
-
     } catch (error) {
       console.error('Failed to fetch data:', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentMonthYear, timeZone]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
-  const currentMonthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  const handleDelete = async (budget) => {
+    if (!window.confirm(`Delete the ${budget.category} budget for ${budget.month}?`)) return;
+
+    try {
+      await deleteBudget(budget._id);
+      await fetchData();
+    } catch (error) {
+      console.error('Failed to delete budget:', error);
+    }
+  };
 
   // Calculate top card stats
   const totalBudgetLimit = budgets.reduce((sum, b) => sum + (b.limit || b.limitAmount || 0), 0);
@@ -85,12 +92,12 @@ export default function Budgets() {
             <p className="text-gray-400 text-sm mt-1">Plan, track and manage your monthly budgets.</p>
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <button className="flex items-center gap-2 glass-card border border-white/10 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm">
+            <div className="flex items-center gap-2 glass-card border border-white/10 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-300 shadow-sm">
               <Calendar className="w-4 h-4 text-emerald-400" />
               <span className="hidden sm:inline">{currentMonthYear}</span>
               <span className="sm:hidden">Date</span>
-            </button>
-            <button className="hidden sm:flex items-center gap-2 glass-card border border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm">
+            </div>
+            <button onClick={() => navigate('/settings')} className="hidden sm:flex items-center gap-2 glass-card border border-white/10 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors shadow-sm">
               <Settings className="w-4 h-4 text-gray-500" />
               Settings
             </button>
@@ -158,7 +165,7 @@ export default function Budgets() {
         {/* Middle Section (Charts) */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           <div className="glass-card rounded-2xl border border-white/10 p-6 min-h-[400px]">
-            <BudgetOverviewChart />
+            <BudgetOverviewChart budgets={budgets} currencySymbol={currencySymbol} />
           </div>
 
           <div className="glass-card rounded-2xl border border-white/10 p-6 min-h-[400px] flex flex-col">
@@ -261,7 +268,9 @@ export default function Budgets() {
                           <span className={`px-2.5 py-1 rounded-md text-xs font-medium border ${statusColor}`}>{status}</span>
                         </td>
                         <td className="py-4 text-right pr-4">
-                          <button className="text-gray-400 hover:text-white transition-colors">...</button>
+                          <button onClick={() => handleDelete(budget)} className="text-gray-400 hover:text-red-400 transition-colors" aria-label={`Delete ${budget.category} budget`} title="Delete budget">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
                         </td>
                       </tr>
                     );

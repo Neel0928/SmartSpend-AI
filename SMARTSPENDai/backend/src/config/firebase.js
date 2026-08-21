@@ -7,6 +7,9 @@ const initFirebase = () => {
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
       // If passing the JSON string in an env variable
       const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+      if (serviceAccount.private_key) {
+        serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+      }
       initializeApp({
         credential: cert(serviceAccount),
       });

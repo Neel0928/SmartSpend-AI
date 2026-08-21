@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LogIn, Mail, Lock, AlertCircle } from 'lucide-react';
+import { LogIn, Mail, Lock, AlertCircle, ArrowLeft } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -40,11 +41,70 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#050505] bg-grid-pattern py-12 px-4 sm:px-6 lg:px-8 relative z-10">
+    <div className="min-h-screen flex items-center justify-center bg-[#050505] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* Animated Background Elements */}
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDM5LjVoNDBNMzkuNSAwdiM0MCIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-40 pointer-events-none" />
 
-      <div className="max-w-md w-full space-y-8 glass-card p-10 md:p-12 border border-white/10 relative z-10">
+      {/* Moving Blobs */}
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.5, 1],
+          opacity: [0.5, 0.8, 0.5],
+          rotate: [0, 90, 0]
+        }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        className="absolute top-0 left-0 w-[600px] h-[600px] bg-emerald-500/20 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" 
+      />
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.5, 1],
+          opacity: [0.4, 0.7, 0.4],
+          rotate: [0, -90, 0]
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-indigo-500/20 rounded-full blur-[150px] pointer-events-none translate-x-1/3 translate-y-1/3" 
+      />
+      
+      {/* Floating particles */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{
+            y: [-20, -100, -20],
+            x: [0, (i % 2 === 0 ? 50 : -50), 0],
+            opacity: [0, 1, 0]
+          }}
+          transition={{
+            duration: 5 + i * 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 1.5
+          }}
+          className={`absolute rounded-full pointer-events-none ${i % 2 === 0 ? 'bg-emerald-400 w-2 h-2 shadow-[0_0_15px_rgba(52,211,153,1)]' : 'bg-cyan-400 w-1.5 h-1.5 shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
+          style={{
+            left: `${15 + i * 15}%`,
+            top: `${70 + (i % 3) * 10}%`
+          }}
+        />
+      ))}
+      
+      {/* Back Button */}
+      <Link 
+        to="/" 
+        className="absolute top-6 left-6 flex items-center gap-2 text-gray-400 hover:text-white transition-colors z-20 group bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 backdrop-blur-md"
+      >
+        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+        <span className="text-sm font-medium">Back to Home</span>
+      </Link>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-md w-full space-y-8 glass-card p-10 md:p-12 border border-white/10 relative z-10"
+      >
         <div>
           <div className="mx-auto h-12 w-12 bg-emerald-500/10 border border-emerald-500/20 rounded-full flex items-center justify-center mb-6">
             <LogIn className="h-6 w-6 text-emerald-400" />
@@ -152,7 +212,7 @@ export default function Login() {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

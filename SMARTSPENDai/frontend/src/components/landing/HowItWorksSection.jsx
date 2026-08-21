@@ -4,18 +4,18 @@ import { motion } from 'framer-motion';
 const steps = [
   {
     number: "01",
-    title: "Connect",
-    description: "Connect your financial data and set up your preferences."
+    title: "Start tracking",
+    description: "Add your income and everyday spending in a few quick steps."
   },
   {
     number: "02",
-    title: "Understand",
-    description: "SmartSpend AI analyzes your spending patterns."
+    title: "See the picture",
+    description: "Review your categories, budgets, and month-to-month progress."
   },
   {
     number: "03",
-    title: "Improve",
-    description: "Use intelligent insights to make better financial decisions."
+    title: "Act with confidence",
+    description: "Use clear insights to adjust habits and move closer to your goals."
   }
 ];
 

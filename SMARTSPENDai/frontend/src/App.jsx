@@ -15,7 +15,7 @@ import { SettingsProvider } from './context/SettingsContext';
 
 function ProtectedRoute({ children }) {
   const { currentUser } = useAuth();
-  
+
   if (!currentUser) {
     return <Navigate to="/login" />;
   }

@@ -1,14 +1,6 @@
 import React from 'react';
-import { Utensils, ShoppingBag, Car, Tv, Zap } from 'lucide-react';
+import { Utensils } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
-
-const mockBudgets = [
-  { name: 'Food & Dining', spent: 8450, limit: 10000, icon: Utensils, color: 'bg-red-500', bg: 'bg-red-100', text: 'text-red-500' },
-  { name: 'Shopping', spent: 6250, limit: 8000, icon: ShoppingBag, color: 'bg-blue-500', bg: 'bg-blue-100', text: 'text-blue-500' },
-  { name: 'Transport', spent: 4850, limit: 6000, icon: Car, color: 'bg-indigo-500', bg: 'bg-indigo-100', text: 'text-indigo-500' },
-  { name: 'Entertainment', spent: 3150, limit: 4000, icon: Tv, color: 'bg-orange-500', bg: 'bg-orange-100', text: 'text-orange-500' },
-  { name: 'Bills & Utilities', spent: 4200, limit: 5000, icon: Zap, color: 'bg-purple-500', bg: 'bg-purple-100', text: 'text-purple-500' },
-];
 
 export default function BudgetList({ standalone = true, customBudgets = null }) {
   const { currencySymbol } = useSettings();

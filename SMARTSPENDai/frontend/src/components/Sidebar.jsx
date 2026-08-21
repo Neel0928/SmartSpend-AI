@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getDashboardInsights } from '../services/aiService';
 import {
   LayoutDashboard,
   WalletCards,
@@ -9,19 +8,14 @@ import {
   PieChart,
   Target,
   BarChart3,
-  FileText,
-  ScanLine,
   Sparkles,
   Settings,
   ChevronDown,
-  Loader2,
   X
 } from 'lucide-react';
 
 export default function Sidebar({ isOpen, onClose }) {
   const { currentUser, logout } = useAuth();
-  const [insight, setInsight] = useState('');
-  const [loadingInsight, setLoadingInsight] = useState(true);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -38,23 +32,6 @@ export default function Sidebar({ isOpen, onClose }) {
       console.error('Logout failed', error);
     }
   };
-
-  useEffect(() => {
-    const fetchInsight = async () => {
-      if (!currentUser) return;
-      try {
-        setLoadingInsight(true);
-        const data = await getDashboardInsights();
-        setInsight(data.insight || 'No insights available right now.');
-      } catch (error) {
-        setInsight('Could not load AI insight.');
-      } finally {
-        setLoadingInsight(false);
-      }
-    };
-    
-    fetchInsight();
-  }, [currentUser]);
 
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
@@ -134,15 +111,9 @@ export default function Sidebar({ isOpen, onClose }) {
             <Sparkles className="w-4 h-4 text-emerald-400" />
             <span className="text-sm font-semibold">AI Insight</span>
           </div>
-          {loadingInsight ? (
-            <div className="flex justify-center items-center py-3">
-              <Loader2 className="w-4 h-4 text-emerald-400 animate-spin" />
-            </div>
-          ) : (
-            <p className="text-xs text-gray-400 leading-relaxed mb-3 line-clamp-3">
-              {insight}
-            </p>
-          )}
+          <p className="text-xs text-gray-400 leading-relaxed mb-3">
+            View your latest personalized spending insight on the dashboard.
+          </p>
           <Link to="/analytics" className="block w-full text-center py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-xs font-medium transition-colors">
             View Details &rarr;
           </Link>

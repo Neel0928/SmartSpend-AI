@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles } from 'lucide-react';
+import AppMark from '../AppMark';
 
 const Footer = () => {
   return (
@@ -9,11 +9,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4 inline-flex group">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-              </div>
-              <span className="font-bold text-xl tracking-tight text-white">SmartSpend <span className="text-emerald-400">AI</span></span>
+            <Link to="/" className="mb-4 inline-flex transition-transform duration-200 hover:scale-[1.02]">
+              <AppMark size="sm" />
             </Link>
             <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-xs">
               Smarter money management, powered by AI.
