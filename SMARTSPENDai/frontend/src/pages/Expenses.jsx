@@ -242,7 +242,7 @@ export default function Expenses() {
           <div className="xl:col-span-3 glass-card rounded-2xl border border-white/10 p-6 flex flex-col min-h-[600px]">
             {/* Table Filters */}
             <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="relative">
                   <List className="w-3 h-3 text-gray-500 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
                   <select
@@ -331,9 +331,9 @@ export default function Expenses() {
                       <input type="checkbox" className="rounded bg-[#050505] border-white/20 text-emerald-500 focus:ring-emerald-500" />
                     </th>
                     <th className="pb-3">Description</th>
-                    <th className="pb-3">Category</th>
-                    <th className="pb-3">Date &darr;</th>
-                    <th className="pb-3">Payment Method</th>
+                    <th className="pb-3 hidden md:table-cell">Category</th>
+                    <th className="pb-3 hidden sm:table-cell">Date &darr;</th>
+                    <th className="pb-3 hidden lg:table-cell">Payment Method</th>
                     <th className="pb-3">Amount</th>
                     <th className="pb-3 w-10"></th>
                   </tr>
@@ -375,15 +375,15 @@ export default function Expenses() {
                               </div>
                             </div>
                           </td>
-                          <td className="py-4">
+                          <td className="py-4 hidden md:table-cell">
                             <span className={`px-2.5 py-1 rounded-md text-[10px] font-medium ${getCategoryColor(tx.category)}`}>
                               {tx.category}
                             </span>
                           </td>
-                          <td className="py-4 text-xs text-gray-400">
+                          <td className="py-4 text-xs text-gray-400 hidden sm:table-cell">
                             {tx.date ? new Date(tx.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Unknown Date'}
                           </td>
-                          <td className="py-4">
+                          <td className="py-4 hidden lg:table-cell">
                             <div className="flex items-center gap-2 bg-white/5 px-2 py-1 rounded text-xs text-gray-400 w-max border border-white/10">
                               <MethodIcon className={`w-3 h-3 ${methodColor}`} />
                               {paymentMethodName}
@@ -406,7 +406,7 @@ export default function Expenses() {
             </div>
 
             {/* Pagination Mock */}
-            <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row items-center justify-between mt-6 pt-4 border-t border-white/10 gap-3">
               <span className="text-xs text-gray-500">Showing 1 to {Math.min(10, transactionCount)} of {transactionCount} expenses</span>
               <div className="flex gap-1">
                 <button className="w-8 h-8 flex items-center justify-center rounded border border-white/10 text-gray-400 hover:bg-white/5">&lt;</button>

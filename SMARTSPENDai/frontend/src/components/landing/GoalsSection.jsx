@@ -6,7 +6,7 @@ const GoalsSection = () => {
   return (
     <section className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="glass-card max-w-4xl mx-auto p-12 relative overflow-hidden">
+        <div className="glass-card max-w-4xl mx-auto p-6 sm:p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px]" />
           
@@ -24,7 +24,7 @@ const GoalsSection = () => {
             </p>
 
             <div className="w-full max-w-2xl bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 text-left">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-xl">
                     💻
@@ -34,7 +34,7 @@ const GoalsSection = () => {
                     <p className="text-sm text-gray-500">Savings Goal</p>
                   </div>
                 </div>
-                <div className="text-right">
+                <div className="text-left sm:text-right">
                   <h4 className="font-bold text-emerald-400">$1,850</h4>
                   <p className="text-sm text-gray-500">of $2,400</p>
                 </div>

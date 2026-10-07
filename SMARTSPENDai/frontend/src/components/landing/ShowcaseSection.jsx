@@ -61,7 +61,7 @@ const ShowcaseSection = () => {
                 <div className="h-10 w-10 bg-white/10 rounded-full border border-white/20"></div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="bg-white/5 rounded-xl p-5 border border-white/10">
                     <div className="h-3 w-20 bg-white/20 rounded-full mb-4"></div>

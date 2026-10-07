@@ -163,7 +163,7 @@ export default function Budgets() {
         </div>
 
         {/* Middle Section (Charts) */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="glass-card rounded-2xl border border-white/10 p-6 min-h-[400px]">
             <BudgetOverviewChart budgets={budgets} currencySymbol={currencySymbol} />
           </div>
@@ -210,9 +210,9 @@ export default function Budgets() {
                     <th className="pb-3 pl-2">Category</th>
                     <th className="pb-3">Budget Amount</th>
                     <th className="pb-3">Spent</th>
-                    <th className="pb-3">Remaining</th>
-                    <th className="pb-3 w-32">Usage</th>
-                    <th className="pb-3 text-center">Status</th>
+                    <th className="pb-3 hidden sm:table-cell">Remaining</th>
+                    <th className="pb-3 w-32 hidden md:table-cell">Usage</th>
+                    <th className="pb-3 text-center hidden sm:table-cell">Status</th>
                     <th className="pb-3 text-right pr-4">Actions</th>
                   </tr>
                 </thead>
@@ -255,8 +255,8 @@ export default function Budgets() {
                         </td>
                         <td className="py-4 text-sm text-gray-400">{currencySymbol}{budgetLimit.toLocaleString()}</td>
                         <td className="py-4 text-sm text-gray-400">{currencySymbol}{(budget.spent || 0).toLocaleString()}</td>
-                        <td className="py-4 text-sm text-gray-400">{currencySymbol}{remaining.toLocaleString()}</td>
-                        <td className="py-4">
+                        <td className="py-4 text-sm text-gray-400 hidden sm:table-cell">{currencySymbol}{remaining.toLocaleString()}</td>
+                        <td className="py-4 hidden md:table-cell">
                           <div className="flex items-center gap-2">
                             <div className="w-24 h-1.5 bg-white/10 rounded-full">
                               <div className={`h-1.5 rounded-full ${barColor}`} style={{ width: `${Math.min(percentage, 100)}%` }}></div>
@@ -264,7 +264,7 @@ export default function Budgets() {
                             <span className="text-xs text-gray-400">{percentage}%</span>
                           </div>
                         </td>
-                        <td className="py-4 text-center">
+                        <td className="py-4 text-center hidden sm:table-cell">
                           <span className={`px-2.5 py-1 rounded-md text-xs font-medium border ${statusColor}`}>{status}</span>
                         </td>
                         <td className="py-4 text-right pr-4">

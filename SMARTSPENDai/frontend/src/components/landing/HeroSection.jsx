@@ -7,9 +7,9 @@ const HeroSection = () => {
   return (
     <div className="relative min-h-screen pt-32 pb-16 md:pb-20 overflow-hidden flex flex-col items-center justify-center bg-[#050505]">
       {/* Deep ambient glows */}
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-emerald-500/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-900/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-emerald-500/15 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-indigo-500/10 rounded-full blur-[100px] md:blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[800px] h-[500px] md:h-[800px] bg-emerald-900/20 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
 
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDM5LjVoNDBNMzkuNSAwdiM0MCIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-30 pointer-events-none" />
@@ -59,13 +59,13 @@ const HeroSection = () => {
               AI-Powered Finance Companion
             </motion.div>
             
-            <h1 className="text-5xl md:text-[5.5rem] font-bold tracking-tight text-white mb-6 leading-[1.05]">
+            <h1 className="text-3xl sm:text-5xl md:text-[5.5rem] font-bold tracking-tight text-white mb-4 sm:mb-6 leading-[1.05]">
               Smart Insights.<br />
               Better Habits.<br />
               <span className="text-emerald-500">Stronger Future.</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-6 sm:mb-10 max-w-xl leading-relaxed">
               SmartSpend AI helps you track expenses, analyze spending patterns, and achieve your financial goals with the power of AI.
             </p>
             
@@ -86,7 +86,7 @@ const HeroSection = () => {
             </div>
 
             {/* Social Proof */}
-            <div className="mt-12 flex items-center gap-4">
+            <div className="mt-8 sm:mt-12 flex items-center gap-4">
               <div className="flex -space-x-3">
                 <img className="w-10 h-10 rounded-full border-2 border-[#050505]" src="https://i.pravatar.cc/100?img=11" alt="User" />
                 <img className="w-10 h-10 rounded-full border-2 border-[#050505]" src="https://i.pravatar.cc/100?img=12" alt="User" />

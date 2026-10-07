@@ -65,13 +65,13 @@ export default function Analytics() {
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100">
-          <p className="font-bold text-gray-900 mb-2">{label}</p>
+        <div className="bg-[#111] p-4 rounded-xl shadow-lg border border-white/10">
+          <p className="font-bold text-white mb-2">{label}</p>
           {payload.map((entry, index) => (
             <div key={index} className="flex items-center gap-2 mb-1">
               <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.color }} />
-              <span className="text-gray-600 text-sm">{entry.name}:</span>
-              <span className="font-bold text-gray-900 text-sm">{currencySymbol}{entry.value.toLocaleString()}</span>
+              <span className="text-gray-400 text-sm">{entry.name}:</span>
+              <span className="font-bold text-white text-sm">{currencySymbol}{entry.value.toLocaleString()}</span>
             </div>
           ))}
         </div>
@@ -211,7 +211,7 @@ export default function Analytics() {
                       </ResponsiveContainer>
                     </div>
                     
-                    <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {categoryData.slice(0, 6).map((entry, index) => (
                         <div key={index} className="flex items-center justify-between text-sm">
                           <div className="flex items-center gap-2">

@@ -244,8 +244,8 @@ export default function Income() {
 
           <div className="lg:col-span-1 glass-card rounded-2xl border border-white/10 p-6 flex flex-col">
              <h3 className="font-bold text-white mb-6">Income by Source</h3>
-             <div className="flex-1 flex items-center justify-between">
-                <div className="h-40 w-40 relative">
+             <div className="flex-1 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="h-40 w-40 relative flex-shrink-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -270,7 +270,7 @@ export default function Income() {
                     <span className="font-bold text-white text-sm">{currencySymbol}{(totalIncome/1000).toFixed(1)}k</span>
                   </div>
                 </div>
-                <div className="space-y-3 flex-1 ml-4">
+                <div className="space-y-3 flex-1 sm:ml-4 w-full sm:w-auto">
                   {pieData.map((item, idx) => (
                     <div key={idx} className="flex items-center justify-between text-xs">
                       <div className="flex items-center gap-1.5">
@@ -325,7 +325,7 @@ export default function Income() {
           <div className="xl:col-span-3 glass-card rounded-2xl border border-white/10 p-6 flex flex-col min-h-[500px]">
             {/* Table Filters */}
             <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="relative">
                   <List className="w-3 h-3 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none" />
                   <select 
@@ -386,9 +386,9 @@ export default function Income() {
                       <input type="checkbox" className="rounded bg-[#050505] border-white/20 text-emerald-500 focus:ring-emerald-500" />
                     </th>
                     <th className="pb-3">Source</th>
-                    <th className="pb-3">Category</th>
-                    <th className="pb-3">Date &darr;</th>
-                    <th className="pb-3">Account</th>
+                    <th className="pb-3 hidden md:table-cell">Category</th>
+                    <th className="pb-3 hidden sm:table-cell">Date &darr;</th>
+                    <th className="pb-3 hidden lg:table-cell">Account</th>
                     <th className="pb-3">Amount</th>
                     <th className="pb-3">Notes</th>
                     <th className="pb-3 w-10"></th>
@@ -422,15 +422,15 @@ export default function Income() {
                               </div>
                             </div>
                           </td>
-                          <td className="py-4">
+                          <td className="py-4 hidden md:table-cell">
                             <span className={`px-2.5 py-1 rounded-md text-[10px] font-medium ${getCategoryColor(tx.category)}`}>
                               {tx.category}
                             </span>
                           </td>
-                          <td className="py-4 text-xs text-gray-400">
+                          <td className="py-4 text-xs text-gray-400 hidden sm:table-cell">
                             {new Date(tx.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
                           </td>
-                          <td className="py-4">
+                          <td className="py-4 hidden lg:table-cell">
                             <div className="flex items-center gap-2 text-xs text-gray-400">
                               <Landmark className="w-3 h-3 text-gray-500" />
                               {accountName}

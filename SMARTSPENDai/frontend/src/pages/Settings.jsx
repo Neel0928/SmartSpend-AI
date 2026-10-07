@@ -162,13 +162,13 @@ export default function Settings() {
         )}
 
         <div className="flex flex-col md:flex-row gap-6 min-h-[600px]">
-          {/* Left Sidebar */}
-          <div className="w-full md:w-64 flex-shrink-0 flex flex-col gap-1">
+          {/* Left Sidebar - horizontal scroll on mobile, vertical on md+ */}
+          <div className="w-full md:w-64 flex-shrink-0 flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                className={`flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2.5 md:py-3 rounded-xl text-xs md:text-sm font-medium transition-all whitespace-nowrap flex-shrink-0 ${
                   activeTab === tab.id 
                     ? 'bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' 
                     : 'text-gray-400 hover:bg-white/5 hover:text-white'
